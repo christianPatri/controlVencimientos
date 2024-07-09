@@ -1,0 +1,31 @@
+.title  {
+  margin-left: 10px;
+}
+
+
+.navbar-login {
+  margin-left: 10px;
+  text-align: right;
+}
+
+.login-buttons {
+  display: flex !important;
+}
+
+.navbar-nav .nav-link {
+  cursor: pointer; /* Cambia el cursor a una mano al pasar el mouse sobre los enlaces */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffffff; /* Cambia el color del texto cuando se pasa el mouse sobre el enlace */
+  background-color: #007bff; /* Cambia el color de fondo cuando se pasa el mouse sobre el enlace */
+}
+
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+  display: block; /* Muestra el menú desplegable cuando se pasa el mouse sobre el elemento padre */
+}
+
+.disabled {
+  pointer-events: none; /* Deshabilita los eventos de clic en el elemento */
+  opacity: 0.6; /* Puedes agregar un estilo adicional para hacer que el elemento parezca desactivado */
+}

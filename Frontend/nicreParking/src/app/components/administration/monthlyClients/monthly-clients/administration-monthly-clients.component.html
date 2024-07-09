@@ -1,0 +1,58 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <div *ngIf="!_isLoading">
+          <app-monthly-clients-grid
+            [monthlyClients] ="_monthlyClientList"
+            (monthlyClientDeleteEvent)="handleDeleteMonthlyClient($event)"
+            (monthlyClientViewFileEvent)="handleViewMonthlyClientFile($event)"
+            [errorMessage]="errorMonthlyClientDelete"
+            [successMessage]="monthlyClientSuccessMessage"
+            >
+          </app-monthly-clients-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row list-home" (click)="showGenerateMonthlyBills()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home" >Generar Facturas Del Mes</h3>
+        </div>
+
+        <div class="overlay" *ngIf="_isGeneratinMonthlyBill"></div>
+        <app-spinner *ngIf="_isGeneratinMonthlyBill"></app-spinner>
+
+        <div *ngIf="_showGenerateMonthlyBillButton">
+          <button type="button" class="btn btn-success rounded-button" (click)="generateMonthlyBills()">
+            <i class="bi bi-plus bi-lg"></i> Crear Facturas Mensuales
+          </button>
+        </div>
+
+        <div class="row alerts">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div *ngIf="showingGenerateBillsAlert" style="padding-top: 20px">
+              <div class="alert alert-danger col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+            <div *ngIf="showingGenerateBillsPanel" style="padding-top: 20px">
+              <div class="alert alert-success col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

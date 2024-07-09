@@ -1,0 +1,237 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="clientSection">
+        <div class="col-md-12">
+          <div class="col-md-12">
+            <div class="row">
+              <h3 class="display-list-home" >1 - Datos Cliente</h3>
+            </div>
+          </div>
+
+          <div *ngIf="_showClientModal">
+            <button type="button" class="btn btn-success rounded-button" (click)="openMonthlyClientsModal()">
+              <i class="bi bi-plus bi-lg"></i> Crear Datos Cliente
+            </button>
+          </div>
+
+          <app-monthly-clients-modal #monthlyClientsModal
+              (monthlyClientCreatedModal)="handleCreateMonthlyClient($event)">
+          </app-monthly-clients-modal>
+
+          <app-monthly-clients-modal #monthlyClientsEditModal
+              (monthlyClientEditedModal)="handleEditMonthlyClient($event)"
+              [isEditing]="_isEditing"
+              [monthlyClientToEdit]="_monthlyClientToEdit">
+          </app-monthly-clients-modal>
+
+          <div class="col-md-12">
+            <div *ngIf="_clientLoaded">
+              <table class="table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Documento</th>
+                    <th>Telefono</th>
+                    <th>Telefono 2</th>
+                    <th>Direccion</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span>{{ _newMonthlyClient.name }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newMonthlyClient.lastname }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newMonthlyClient.document }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newMonthlyClient.phoneNumber }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newMonthlyClient.secondaryPhoneNumber }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newMonthlyClient.address }}</span>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="editMonthlyClient()" [disabled]="_disableAllButtons">
+                        <i class="bi bi-pencil bi-md"></i> Editar
+                      </button>
+                      <!-- <button class="btn-sm" (click)="editMonthlyClient()" [disabled]="_disableAllButtons">Editar</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row alerts">
+            <div class="d-flex justify-content-center animated fadeIn fast">
+              <div *ngIf="showingCreateMonthlyClientAlert" style="padding-top: 20px">
+                <div class="alert alert-danger col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+
+              <div *ngIf="showingCreateMonthlyClientConfirmationPanel" style="padding-top: 20px">
+                <div class="alert alert-success col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="vehicleSection" *ngIf="_clientLoaded">
+
+        <div class="col-md-12" >
+          <div class="row">
+            <h3 class="display-list-home" >2 - Vehiculos cliente</h3>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div *ngIf="_clientLoaded && _newMonthlyVehicles.length > 0 ">
+            <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Matricula</th>
+                  <th>Color</th>
+                  <th>Precio</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let mVehicle of _newMonthlyVehicles; let i = index">
+                  <td>
+                    <span>{{ mVehicle.brand }}</span>
+                  </td>
+                  <td>
+                    <span>{{ mVehicle.model }}</span>
+                  </td>
+                  <td>
+                    <span>{{ mVehicle.licenseplate }}</span>
+                  </td>
+                  <td>
+                    <span>{{ mVehicle.color }}</span>
+                  </td>
+                  <td>
+                    <span>$ {{ mVehicle.price }}</span>
+                  </td>
+                  <td>
+
+                    <button type="button" class="btn btn-success rounded-button grid-button" (click)="editMonthlyVehicle(i)" [disabled]="_disableAllButtons">
+                      <i class="bi bi-pencil bi-md"></i> Editar
+                    </button>
+                    <button type="button" class="btn btn-success rounded-button grid-button" (click)="removeMonthlyVehicle(i)" [disabled]="_disableAllButtons">
+                      <i class="bi bi-trash bi-md"></i> Quitar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <button type="button" class="btn btn-success rounded-button" (click)="openMonthlyVehiclesModal()" [disabled]="_disableAllButtons">
+              <i class="bi bi-plus bi-lg"></i> Agregar vehiculo
+            </button>
+          </div>
+
+          <app-monthly-vehicles-modal #monthlyVehiclesModal
+              (monthlyVehicleCreatedModal)="handleCreateMonthlyVehicle($event)"
+              [monthlyVehicleConfigPrice]="_monthlyVehiclePriceItem">
+          </app-monthly-vehicles-modal>
+
+          <app-monthly-vehicles-modal #monthlyVehiclesEditModal
+              (monthlyVehicleEditedModal)="handleEditMonthlyVehicle($event)"
+              [isEditing]="_isEditingVehicle"
+              [monthlyVehicleToEdit]="_monthlyVehicleToEdit">
+          </app-monthly-vehicles-modal>
+
+          <div class="row alerts">
+            <div class="d-flex justify-content-center animated fadeIn fast">
+              <div *ngIf="showingCreateMonthlyVehicleAlert" style="padding-top: 20px">
+                <div class="alert alert-danger col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+
+              <div *ngIf="showingCreateMonthlyVehicleConfirmationPanel" style="padding-top: 20px">
+                <div class="alert alert-success col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="confirmSection" *ngIf="_vehicleLoaded">
+        <div class="col-md-12" >
+          <div class="row">
+            <h3 class="display-list-home" >3 - Confirmar cliente</h3>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <button type="button" class="btn btn-success rounded-button" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+              Crear Cliente
+            </button>
+          </div>
+
+          <app-generic-modal #submitModal
+              (submittedButton)="handleSubmitModalEvent($event)"
+              [modalTitle]="_submitModalTitle"
+              [isCreatingClient]="_submitedModalIsCreating"
+              [clientDataToShow]="_newMonthlyClient"
+              [vehicleDataToShow]="_newMonthlyVehicles"
+              >
+          </app-generic-modal>
+
+          <div class="row alerts">
+            <div class="d-flex justify-content-center animated fadeIn fast">
+              <div *ngIf="showingCreateMonthlyAlert" style="padding-top: 20px">
+                <div class="alert alert-danger col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+
+              <div *ngIf="showingCreateMonthlyConfirmationPanel" style="padding-top: 20px">
+                <div class="alert alert-success col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

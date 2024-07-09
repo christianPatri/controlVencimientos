@@ -1,0 +1,70 @@
+<div>
+  <app-page-title
+    [componentTitle]="_pageTitle">
+  </app-page-title>
+</div>
+
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="display-list-home">{{vehicle.brand}} {{vehicle.model}} - {{vehicle.licenseplate}}</h4>
+          <hr>
+        </div>
+      </div>
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="container">
+        <div class="search-bar">
+          <input type="date" placeholder="Desde" [(ngModel)]="from">
+          <input type="date" placeholder="Hasta" [(ngModel)]="to">
+
+          <button type="button" class="btn btn-success rounded-button grid-button" [disabled]="!from" (click)="filterMonthlyVehicleLogs()">
+            <i></i> Filtrar
+          </button>
+        </div>
+
+        <div>
+          <table class="table-bordered">
+            <thead>
+              <tr>
+                <th>Fecha completa</th>
+                <th>Dia-Mes</th>
+                <th>Hora entrada</th>
+                <th>Hora salida</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movement of _vehicleParkingLog  | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: _totalItems}">
+                <td><span>{{ movement.entryExitDate | date:'dd-MM-yyyy'}}</span></td>
+                <td><span>{{ movement.entryExitDate | date:'dd-MMMM':'es'}}</span></td>
+                <td>
+                  <span *ngIf="movement.isEntry">{{ movement.entryExitDate | date:'HH:mm:ss'}}</span>
+                  <span *ngIf="!movement.isEntry">--</span>
+                </td>
+                <td>
+                  <span *ngIf="!movement.isEntry">{{ movement.entryExitDate | date:'HH:mm:ss'}}</span>
+                  <span *ngIf="movement.isEntry">--</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ngx-pagination">
+            <pagination-controls
+              (pageChange)="_page = $event"
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+            >
+            </pagination-controls>
+          </div>
+
+          <button (click)="exportToExcel()" class="btn btn-success btn-excell" [disabled]="!_exportEnable">Exportar a Excel</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

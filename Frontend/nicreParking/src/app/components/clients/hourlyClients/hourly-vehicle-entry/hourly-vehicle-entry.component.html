@@ -1,0 +1,71 @@
+<div>
+  <div class="container form-hourly-vehicles" *ngIf="!entryVehicleSuccess">
+    <h5 class="">Ingrese los datos del vehiculo </h5>
+
+    <form [formGroup]="myForm">
+      <div class="form-row">
+        <div class="form-group col form-custom-col">
+          <label for="name" class="input-label">Nombre: </label>
+          <input type="text" formControlName="name" class="form-control form-input-text">
+        </div>
+
+        <div class="form-group col form-custom-col">
+          <label for="phoneNumber" class="input-label">Telefono: </label>
+          <input type="text" formControlName="phoneNumber" class="form-control form-input-text">
+        </div>
+
+        <div class="form-group col form-custom-col">
+          <label for="model" class="input-label">Vehiculo: </label>
+          <input type="text" formControlName="model" class="form-control form-input-text">
+        </div>
+
+        <div class="form-group col form-custom-col">
+          <label for="licenseplate" class="input-label">Matricula: </label>
+          <input type="text" formControlName="licenseplate" class="form-control form-input-text">
+        </div>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-success rounded-button grid-button" [disabled]="myForm.invalid" (click)="entryVehicle()">Ingresar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="container success-messages">
+
+    <div class="row alerts">
+      <div class="d-flex justify-content-center animated fadeIn fast">
+        <div *ngIf="showingAlert" style="padding-top: 20px">
+          <div class="alert alert-danger col-form-label-sm" role="alert">
+            {{ messageError }}
+          </div>
+        </div>
+        <div *ngIf="showingPanel" style="padding-top: 20px">
+          <div class="alert alert-success col-form-label-sm" role="alert">
+            {{ messageError }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry-success" *ngIf="entryVehicleSuccess">
+      <!-- <h5>Pension ingresada correctamente.</h5> -->
+
+      <div class="print-btn" *ngIf="!printingTicket">
+        <button *ngIf="!printingTicket" type="button" class="btn btn-success rounded-button grid-button" (click)="imprimirTicket()">
+          <i class="bi bi-printer bi-md"></i> Imprimir Ticket
+        </button>
+      </div>
+
+      <div *ngIf="printingTicket">
+        <h5>Imprimiendo Ticket</h5>
+      </div>
+
+      <div class="print-btn" *ngIf="showBackButton">
+        <button type="button" class="btn btn-success rounded-button grid-button" (click)="goBack()">
+          <i class="bi bi-arrow-left bi-md"></i> Volver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

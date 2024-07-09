@@ -1,0 +1,22 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+    [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <div *ngIf="!_isLoading">
+          <app-configuration-items-grid
+            [configurationItems] ="_configItems"
+            (modifyConfigurationItemEvent)="handleEditConfigurationItem($event)"
+            [errorMessage]="errorUpdate"
+            [successMessage]="configSuccessMessage"
+            >
+          </app-configuration-items-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

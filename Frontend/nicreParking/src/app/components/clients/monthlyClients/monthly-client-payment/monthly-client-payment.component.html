@@ -1,0 +1,16 @@
+<div>
+  <div class="container" *ngIf="showClientData">
+    <div class="row list-home">
+      <div class="col-md-12">
+          <app-bills-grid
+            [bills]="_monthlyClientBills"
+            [errorMessage]="errorBillCreate"
+            [successMessage]="billSuccessMessage"
+            (billPayEvent)="handlePayBillEvent($event)"
+            [canCreateManualBills]="false"
+          >
+          </app-bills-grid>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div>
+  <div class="container">
+    <h3 class="header-title">Listado de usuarios </h3>
+    <hr class="hr-header">
+  </div>
+
+  <div class="container">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="nombreFilter">
+      <input type="text" placeholder="Buscar por apellido" [(ngModel)]="apellidoFilter">
+      <input type="text" placeholder="Buscar por nombre de usuario" [(ngModel)]="usernameFilter">
+      <button type="button" class="btn btn-success rounded-button grid-button" (click)="filterUsers()">
+        <i></i> Filtrar
+      </button>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nombre de Usuario</th>
+            <th>Fecha de Ingreso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers; let i = index">
+            <td>
+              <span>{{ user.name }}</span>
+            </td>
+            <td>
+              <span>{{ user.lastname }}</span>
+            </td>
+            <td>
+              <span>{{ user.username }}</span>
+            </td>
+            <td>
+              <span>{{ user.createdDate | date:'dd-MM-yyyy'}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success rounded-button grid-button" (click)="editUser(i)">
+                <i class="bi bi-pencil bi-md"></i> Editar
+              </button>
+              <button type="button" class="btn btn-success rounded-button grid-button" (click)="deleteUser(i)">
+                <i class="bi bi-pencil bi-md"></i> Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-success rounded-button add-user-button" (click)="openUsersModal()">
+        <i class="bi bi-plus bi-lg"></i> Agregar Usuario
+      </button>
+
+      <app-users-modal #usersCreateModal
+        (userCreatedModal)="handleCreateUser($event)">
+      </app-users-modal>
+      <app-users-modal #usersEditModal
+          (userEditedModal)="handleEditUser($event)"
+          [isEditing]="true"
+          [userToEdit]="userToEdit">
+      </app-users-modal>
+
+      <div class="row alerts">
+        <div class="d-flex justify-content-center animated fadeIn fast">
+          <div *ngIf="showingUserAlert" style="padding-top: 20px">
+            <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+          <div *ngIf="showingUserPanel" style="padding-top: 20px">
+            <div class="alert alert-success col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

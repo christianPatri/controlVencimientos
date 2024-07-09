@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Columna del lado izquierdo con la tarjeta -->
+    <div class="col-md-2 p-0">
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div *ngIf="!_isLoading">
+        <app-monthly-client-side-card
+          [monthlyClient]="_monthlyClient"
+          (monthlyClientEditEvent)="handleEditMonthlyClient($event)"
+          >
+        </app-monthly-client-side-card>
+      </div>
+
+    </div>
+    <!-- Columna del contenido principal -->
+    <div class="col-md-10">
+      <div class="jumbotron jumbotron-fluid animated fadeIn fast">
+        <div class="overlay" *ngIf="_isLoading"></div>
+        <app-spinner *ngIf="_isLoading"></app-spinner>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <app-page-title
+                [componentTitle]="_pageTitle">
+              </app-page-title>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <app-monthly-vehicles-grid
+            [monthlyClient]="_monthlyClient"
+            (monthlyVehicleCreateEvent)="mapModalVehicleCreate($event)"
+            (monthlyVehicleEditEvent)="mapModalVehicleEdit($event)"
+            (monthlyVehicleDeleteEvent)="handleMonthlyVehicleDeleteEvent($event)"
+            (monthlyVehicleViewMovementsEvent)="handleMonthlyVehicleViewMovementsEvent($event)"
+            [errorUpdate]="errorUpdate"
+            [successMessage]="vehicleSuccessMessage"
+          >
+          </app-monthly-vehicles-grid>
+        </div>
+
+        <div>
+          <app-bills-grid
+            [bills]="_monthlyClientBills"
+            (manualBillCreateEvent)="handleManualBillCreate($event)"
+            [errorMessage]="errorBillCreate"
+            [successMessage]="billSuccessMessage"
+            (billPayEvent)="handlePayBillEvent($event)"
+          >
+          </app-bills-grid>
+        </div>
+
+
+
+
+        <!-- <div class="container">
+          <div class="row list-home">
+            <div class="overlay" *ngIf="_isLoading"></div>
+            <app-spinner *ngIf="_isLoadingMovements"></app-spinner>
+            <div class="clientSection">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <div class="row">
+                    <h3 class="display-list-home">Movimientos de vehiculos</h3>
+                  </div>
+                </div>
+
+                <div *ngFor = "let vehicle of _monthlyClientVehicles; let i = index ">
+                  <app-monthly-vehicle-movements [vehicle]="vehicle"></app-monthly-vehicle-movements>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>

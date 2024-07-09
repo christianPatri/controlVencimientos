@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="row">
+        <h3 class="display-list-home" >Editar Configuracion</h3>
+      </div>
+
+      <div class="container">
+        <div class="row formulary">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div class="w-70">
+              <form [formGroup]="myForm" (ngSubmit)="editConfigItem()" class="form-modal">
+                <div class="form-row">
+                  <div class="form-group col form-custom-col">
+                    <label for="name" class="input-label">Nombre </label>
+                    <input type="text" formControlName="name" class="form-control form-input-text" [(ngModel)]="configurationItem.name">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="value" class="input-label">Valor </label>
+                    <input type="text" formControlName="value" class="form-control form-input-text" [(ngModel)]="configurationItem.value">
+                  </div>
+
+                  <div class="submit-button">
+                    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Guardar</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

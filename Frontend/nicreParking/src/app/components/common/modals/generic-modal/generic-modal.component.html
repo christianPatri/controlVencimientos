@@ -1,0 +1,112 @@
+<div class="modal" [ngClass]="{ 'open': isOpen }">
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalTitle }}</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <div *ngIf="isCreatingClient" class="container mt-4">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <h5>Cliente</h5>
+          </div>
+          <div class="col-12 mb-3">
+            <span><strong>Nombre:</strong> {{ clientDataToShow.name }}</span>
+          </div>
+          <div class="col-12 mb-3">
+            <span><strong>Apellido:</strong> {{ clientDataToShow.lastname }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 mb-3">
+            <h5>Vehiculos</h5>
+          </div>
+
+          <div >
+            <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Marca</th>
+                  <th>Matricula</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let mVehicle of vehicleDataToShow; let i = index">
+                  <td>
+                    <span>{{ mVehicle.brand }} - {{ mVehicle.model }}</span>
+                  </td>
+                  <td>
+                    <span>{{ mVehicle.licenseplate }}</span>
+                  </td>
+                  <td>
+                    <span>$ {{ mVehicle.price }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer" *ngIf="isCreatingClient" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Aceptar
+        </button>
+      </div>
+
+      <div *ngIf="isPayingBill && billToShow != null" class="container mt-4">
+        <app-bills-payment [bill]="billToShow">
+        </app-bills-payment>
+      </div>
+
+      <div class="modal-footer" *ngIf="isPayingBill" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Pagar
+        </button>
+      </div>
+
+      <div *ngIf="isDeletingVehicle && vehicleToDelete != null" class="container mt-4">
+        <app-monthly-vehicle-delete [vehicle]="vehicleToDelete">
+        </app-monthly-vehicle-delete>
+      </div>
+
+      <div class="modal-footer" *ngIf="isDeletingVehicle" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Eliminar
+        </button>
+      </div>
+
+      <div *ngIf="isDeletingMonthlyClient && monthlyClientToDelete != null" class="container mt-4">
+        <app-monthly-client-delete [monthlyClient]="monthlyClientToDelete">
+        </app-monthly-client-delete>
+      </div>
+
+      <div class="modal-footer" *ngIf="isDeletingMonthlyClient" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Eliminar
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div>
+  <div class="container form-check-vehicles">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Por Documento </h5>
+        <form [formGroup]="documentForm" class="mb-3">
+          <div class="form-row">
+            <div class="form-group col form-custom-col">
+              <label for="document" class="input-label">Documento: </label>
+              <input type="text" formControlName="document" class="form-control form-input-text">
+            </div>
+          </div>
+          <div class="buttons">
+            <button type="button" class="btn btn-primary rounded-button grid-button left-button" [disabled]="documentForm.invalid" (click)="checkDocumentVehicle(true)">Consultar</button>
+            <button type="button" class="btn btn-primary rounded-button grid-button" [disabled]="documentForm.invalid" (click)="checkDocumentVehicle(false)">Pagar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <h5>Por Matricula</h5>
+        <form [formGroup]="licenseplateForm" class="mb-3">
+          <div class="form-row">
+            <div class="form-group col form-custom-col">
+              <label for="licenseplate" class="input-label">Matricula: </label>
+              <input type="text" formControlName="licenseplate" class="form-control form-input-text">
+            </div>
+          </div>
+          <div class="buttons">
+            <button type="button" class="btn btn-primary rounded-button grid-button left-button" [disabled]="documentForm.invalid" (click)="checkDocumentVehicle(true)">Consultar</button>
+            <button type="button" class="btn btn-primary rounded-button grid-button" [disabled]="documentForm.invalid" (click)="checkDocumentVehicle(false)">Pagar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container success-messages" *ngIf="showErrorMessage">
+    <div class="row alerts">
+      <div class="d-flex justify-content-center animated fadeIn fast">
+        <div style="padding-top: 20px">
+          <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ returnErrorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="showClientData">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <app-monthly-client-consultation-grid
+          [monthlyClient]="returnMonthlyClient"
+        >
+        </app-monthly-client-consultation-grid>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="showClientBills">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <app-monthly-client-payment
+          [returnMonthlyClient]="returnMonthlyClient"
+          [errorUpdate]="errorUpdate">
+        </app-monthly-client-payment>
+      </div>
+    </div>
+  </div>
+</div>

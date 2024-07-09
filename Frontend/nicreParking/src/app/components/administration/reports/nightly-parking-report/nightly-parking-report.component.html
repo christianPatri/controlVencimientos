@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="display-list-home">Reporte Parking Nocturno</h4>
+          <hr>
+        </div>
+      </div>
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="container">
+        <div class="search-bar">
+          <input type="date" placeholder="Buscar por nombre" [(ngModel)]="from">
+          <input type="date" placeholder="Buscar por apellido" [(ngModel)]="to">
+
+          <button type="button" class="btn btn-success rounded-button grid-button" [disabled]="!from" (click)="filterNighltyParkingReport()">
+            <i></i> Filtrar
+          </button>
+        </div>
+
+        <div>
+          <table class="table table-bordered table-striped table-hover table-sm table-responsive-md"
+               *ngIf="_nighltyParkingReport != undefined">
+            <thead class="thead-dark">
+              <tr>
+                <th>Total de pensiones</th>
+                <th>Total ingresos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span>{{ _nighltyParkingReport.totalMovements }}</span>
+                </td>
+                <td>
+                  <span>{{ _nighltyParkingReport.totalAmount }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div>
+          <div class="col-md-12">
+            <div class="row">
+              <h4 class="display-list-home">Movimientos pensiones</h4>
+              <hr>
+            </div>
+          </div>
+          <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Matricula</th>
+                <th>Modelo</th>
+                <th>Fecha de Ingreso</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="_nighltyParkingReport != undefined">
+              <tr *ngFor="let item of _nighltyParkingReport.movements | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: _nighltyParkingReport.movements.length }; let i = index">
+                <td>
+                  <span>{{ item.name }}</span>
+                </td>
+                <td>
+                  <span>{{ item.licenseplate }}</span>
+                </td>
+                <td>
+                  <span>{{ item.model }}</span>
+                </td>
+                <td>
+                  <span>{{ item.startingDate  | date:'dd-MM-yyyy' }}</span>
+                </td>
+                <td>
+                  <span>{{ item.totalAmount }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ngx-pagination">
+            <pagination-controls
+              (pageChange)="_page = $event"
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+            >
+            </pagination-controls>
+          </div>
+
+          <button (click)="exportToExcel()" class="btn btn-success btn-excell" [disabled]="!_exportEnable">Exportar a Excel</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

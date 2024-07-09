@@ -1,0 +1,91 @@
+.card-column {
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  margin: 0; /* Sin margen para alinearse con los bordes de la columna */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-top: 10px; /* Ajusta el margen según sea necesario */
+  font-weight: bold;
+  text-align: center; /* Alineación centrada */
+  margin-bottom: 8px;
+}
+
+hr {
+  margin-top: 5px; /* Ajusta el margen según sea necesario */
+  margin-bottom: 2px; /* Ajusta el margen según sea necesario */
+  border: 0;
+  border-top: 3px solid rgb(90, 85, 85);
+}
+
+.card-content {
+  padding: 10px; /* Ajusta el relleno según sea necesario */
+  font-size: 14px; /* Ajusta el tamaño de la fuente según sea necesario */
+  line-height: 1.5; /* Ajusta la altura de línea según sea necesario */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Permite que el contenido crezca y ocupe el espacio disponible */
+}
+
+.card-content div {
+  margin-bottom: 0px; /* Añade un margen inferior para separar los elementos */
+}
+
+.card-content .mt-auto {
+  margin-top: auto; /* Empuja el botón hacia el final del contenedor */
+}
+
+.grid-button {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+.rounded-button {
+  margin-top: 10px;
+  border-radius: 20px; /* Ajusta el valor según tu preferencia */
+}
+
+.card-content-title {
+  font-size: 16px; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+}
+
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightgray;
+  border: 1px solid #ccc;
+  padding: 0px;
+  padding-left: 5px;
+  margin: 0px;
+  border-radius: 5px;
+}
+
+.grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #198754;
+  color: white;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+  border-radius: 1px;
+}
+
+.col {
+  margin-bottom: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.card-content .row {
+  margin-bottom: 1px !important;
+}

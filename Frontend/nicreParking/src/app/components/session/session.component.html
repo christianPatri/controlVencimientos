@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row formulary">
+    <div class="d-flex justify-content-center animated fadeIn fast">
+      <div class="w-50">
+          <form (ngSubmit)="login(f)" #f="ngForm">
+              <div class="form-group">
+                  <label for="usernameInput">Usuario</label>
+                  <input type="username" name="username" [(ngModel)]="user.username" class="form-control" id="usernameInput">
+              </div>
+              <div class="form-group">
+                  <label for="passwordInput">Password</label>
+                  <input type="password" name="password" [(ngModel)]="user.password" class="form-control" id="passwordInput">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row alerts">
+    <div class="d-flex justify-content-center animated fadeIn fast">
+      <div *ngIf="showingAlert" style="padding-top: 20px">
+        <div class="alert alert-danger col-form-label-sm" role="alert">
+            {{ messageError }}
+        </div>
+      </div>
+
+      <div *ngIf="showingConfirmationPanel" style="padding-top: 20px">
+        <div class="alert alert-success col-form-label-sm" role="alert">
+            {{ messageError }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

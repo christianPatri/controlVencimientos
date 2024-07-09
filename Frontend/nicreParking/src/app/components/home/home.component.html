@@ -1,0 +1,65 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+    <app-page-title
+     [componentTitle]="_pageTitle">
+    </app-page-title>
+
+
+    <!-- <div class=" container ">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="home-title" >Estacion Ancap Nicre</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="home-description">Sistema de gestion de parking</p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="container">
+      <div class="row list-home" (click)="navigateToMonthlyParking()">
+        <div class="col-md-4">
+          <img src="assets/img/home_logoParkingMensual.png" width="150" height="150" alt="imagenDeContenidos">
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <h3 class="display-list-home" >Parking Mensual</h3>
+          </div>
+          <div class="row">
+            <p> Visualizacion de clientes mensuales</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row list-home" (click)="navigateToHourParking()">
+        <div class="col-md-4">
+            <img src="assets/img/home_logoParkingXhora.png" width="150" height="150" alt="imagenDeContenidos">
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <h3 class="display-list-home" >Parking por hora</h3>
+          </div>
+          <div class="row">
+            <p> Ingreso y entrega de vehiculos por hora</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row list-home" (click)="navigateToNightlyParking()">
+        <div class="col-md-4">
+            <img src="assets/img/home_logoParkingXhora.png" width="150" height="150" alt="imagenDeContenidos">
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <h3 class="display-list-home" >Parking por noche</h3>
+          </div>
+          <div class="row">
+            <p> Ingreso y entrega de vehiculos por noche</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,41 @@
+<div>
+  <div class="container form-hourly-vehicles" *ngIf="!entryVehicleSuccess">
+    <h5>Ingrese los datos del vehiculo </h5>
+
+    <form [formGroup]="myForm" (ngSubmit)="entryVehicle()">
+      <div class="form-row">
+        <div class="form-group col form-custom-col">
+          <label for="licenseplate" class="input-label">Matricula: </label>
+          <input type="text" formControlName="licenseplate" class="form-control form-input-text">
+        </div>
+      </div>
+
+      <div class="">
+        <button type="button" class="btn btn-primary rounded-button grid-button" [disabled]="myForm.invalid" (click)="entryVehicle()">Ingresar</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="container success-messages">
+    <div class="row alerts">
+      <div class="d-flex justify-content-center animated fadeIn fast">
+        <div *ngIf="entryVehicleError" style="padding-top: 20px">
+          <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ returnErrorMessage }}
+          </div>
+        </div>
+
+        <div *ngIf="entryVehicleSuccess" style="padding-top: 20px">
+          <div class="alert alert-success col-form-label-sm" role="alert">
+              {{ returnErrorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showBackButton">
+      <button (click)="goBack()">Volver</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="display-list-home">Facturas cliente</h4>
+          <hr>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+          <thead class="thead-dark">
+            <tr>
+              <th>Fecha Emision</th>
+              <th>Anio</th>
+              <th>Mes</th>
+              <th>Descripcion</th>
+              <th>Monto</th>
+              <th>Fecha Pago</th>
+              <th>Pago</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bill of bills | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: bills.length}; let i = index">
+              <td><span>{{ bill.issueDate | date:'dd-MM-yyyy' }}</span></td>
+              <td><span>{{ bill.year }}</span></td>
+              <td><span>{{ bill.month }}</span></td>
+              <td><span>{{ bill.description }}</span></td>
+              <td><span>{{ bill.totalAmount }}</span></td>
+              <td *ngIf="isPayedBill(bill.paymentDate)">
+                <span>{{ bill.paymentDate | date:'dd-MM-yyyy' }}</span>
+              </td>
+              <td *ngIf="!isPayedBill(bill.paymentDate)">
+                <span>-</span>
+              </td>
+
+              <td>
+                <i *ngIf="bill.isActive" class="bi bi-x-circle-fill text-danger"></i>
+                <i *ngIf="!bill.isActive" class="bi bi-check-circle-fill text-success"></i>
+              </td>
+              <td>
+                <button *ngIf="bill.isActive" type="button" class="btn btn-success rounded-button grid-button" (click)="openPayBillModal(bill)">
+                  <i class="bi bi-receipt bi-md"></i> Pagar
+                </button>
+                <button *ngIf="!bill.isActive" type="button" class="btn btn-success rounded-button grid-button" (click)="printBillTicket(bill)">
+                  <i class="bi bi-printer bi-md"></i> Ticket
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="ngx-pagination">
+          <pagination-controls
+            (pageChange)="_page = $event"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+          >
+          </pagination-controls>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div *ngIf="canCreateManualBills">
+          <button type="button" class="btn btn-success rounded-button add-vehicle-button" (click)="openCreateBillModal()">
+            <i class="bi bi-plus bi-lg"></i> Generar Factura Manual
+          </button>
+        </div>
+
+        <app-bills-modal #billsModal
+            (manualBillCreatedModal)="handleCreateManualBill($event)">
+        </app-bills-modal>
+
+        <div>
+          <app-generic-modal #submitModal
+            (submittedButton)="handlePayBillModalEvent($event)"
+            [modalTitle]="_submitModalTitle"
+            [isPayingBill]="_submitedModalIsPayingBill"
+            [billToShow]="_selectedBillToPay"
+            >
+          </app-generic-modal>
+        </div>
+
+
+        <div class="row alerts">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div *ngIf="showingCreateBillAlert" style="padding-top: 20px">
+              <div class="alert alert-danger col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+            <div *ngIf="showingCreateBillConfirmationPanel" style="padding-top: 20px">
+              <div class="alert alert-success col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

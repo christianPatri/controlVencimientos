@@ -1,0 +1,27 @@
+<div class="modal" [ngClass]="{ 'open': isOpen }">
+  <div class="modal-overlay"></div>
+  <div class="modal-container" *ngIf="!isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Nuevo usuario</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-users-create #usersCreate (userCreated)="handleUserCreated($event)"></app-users-create>
+    </div>
+  </div>
+
+  <div class="modal-container" *ngIf="isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Editar usuario</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-users-edit #usersEdit
+          (userEdited)="handleUserEdited($event)"
+          [userToEdit]="userToEdit"
+          >
+
+      </app-users-edit>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="row">
+        <h3 class="display-list-home" >Vehiculo</h3>
+      </div>
+
+      <div class="container">
+        <div class="row formulary">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div class="w-70">
+              <form [formGroup]="myForm" (ngSubmit)="createMonthlyVehicle()" class="form-modal">
+                <div class="form-row">
+                  <div class="form-group col form-custom-col">
+                    <label for="brand" class="input-label">Marca</label>
+                    <input type="text" formControlName="brand" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="model" class="input-label">Modelo</label>
+                    <input type="text" formControlName="model" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="licenseplate" class="input-label">Matricula</label>
+                    <input type="text" formControlName="licenseplate" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="color" class="input-label">Color</label>
+                    <input type="text" formControlName="color" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="price" class="input-label">Precio</label>
+                    <input type="text" formControlName="price" class="form-control form-input-text" [(ngModel)]="myForm.value.price">
+                  </div>
+                </div>
+
+                <div class="submit-button">
+                  <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Ingresar</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

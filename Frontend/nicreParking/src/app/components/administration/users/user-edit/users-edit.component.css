@@ -1,0 +1,57 @@
+.home-title {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-description{
+  text-align: center;
+  margin-top: 0,1cm;
+}
+
+.list-home{
+  text-align: center;
+  border-style: solid;
+  border-color: brown;
+  margin-top: 1cm;
+}
+
+.display-list-home{
+  text-align: center;
+  padding-top: 1%;
+  float: none;
+}
+
+.login-section{
+  text-align: center;
+  margin-left: 30%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container input {
+  margin-left: 10px; /* Espacio entre el label y el input */
+}
+
+.input-label {
+  width: 100px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.form-input-text {
+  display: inline-block;
+  width: 200px;
+  height: 24px;
+}
+
+.form-custom-col {
+  margin-top: 5px;
+}
+
+.submit-button {
+  margin-top: 10px;
+  margin-left: 70px;
+}

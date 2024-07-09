@@ -1,0 +1,107 @@
+<div>
+  <div class="container">
+    <h3 class="header-title">Clientes Mensuales</h3>
+    <hr class="hr-header">
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="nombreFilter">
+      <input type="text" placeholder="Buscar por apellido" [(ngModel)]="apellidoFilter">
+      <input type="text" placeholder="Buscar por docuemnto" [(ngModel)]="documentFilter">
+      <button type="button" class="btn btn-success rounded-button grid-button" (click)="filterMonthlyClients()">
+        <i></i> Filtrar
+      </button>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Telefono</th>
+            <th>Telefono 2</th>
+            <th>Inicio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+          <tbody>
+            <ng-container *ngFor="let mClient of filteredMonthlyClients | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: filteredMonthlyClients.length}; let i = index">
+              <tr >
+                <td>
+                  <span>{{ mClient.name }}</span>
+                </td>
+                <td>
+                  <span>{{ mClient.lastname }}</span>
+                </td>
+                <td>
+                  <span>{{ mClient.document }}</span>
+                </td>
+                <td>
+                  <span>{{ mClient.phoneNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ mClient.secondaryPhoneNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ mClient.startingDate | date:'dd-MM-yyyy'}}</span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="openDeleteMonthlyClientModal(mClient)">
+                    <i class="bi bi-trash bi-md"></i> Eliminar
+                  </button>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="viewMonthlyClientFile(mClient)">
+                    <i class="bi bi-eye bi-md"></i> Ver Ficha
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+      </table>
+
+      <div class="ngx-pagination">
+        <pagination-controls
+          (pageChange)="_page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        >
+        </pagination-controls>
+      </div>
+
+      <div>
+        <app-generic-modal #submitModal
+          (submittedButton)="handleDeleteMonthlyClientModalEvent($event)"
+          [modalTitle]="_submitModalTitle"
+          [isDeletingMonthlyClient]="_submitedModalIsDeletingMonthlyClient"
+          [monthlyClientToDelete]="_selectedMonthlyClientToDelete"
+          >
+        </app-generic-modal>
+      </div>
+
+      <div class="row alerts">
+        <div class="d-flex justify-content-center animated fadeIn fast">
+          <div *ngIf="showingMonthlyClientAlert" style="padding-top: 20px">
+            <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+          <div *ngIf="showingMonthlyClientConfirmationPanel" style="padding-top: 20px">
+            <div class="alert alert-success col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div>
+        <button type="button" class="btn btn-success rounded-button add-client-button" (click)="navigateToMonthlyClientGenerator()">
+          <i class="bi bi-plus bi-lg"></i> Crear Cliente Mensual
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

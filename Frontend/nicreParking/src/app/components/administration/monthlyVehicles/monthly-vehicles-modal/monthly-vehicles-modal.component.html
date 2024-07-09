@@ -1,0 +1,28 @@
+<div class="modal" [ngClass]="{ 'open': isOpen }">
+  <div class="modal-overlay"></div>
+  <div class="modal-container" *ngIf="!isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Crear vehiculo nuevo</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-monthly-vehicle-create #monthlyVehicleCreate
+        (monthlyVehicleCreated)="handleMonthlyVehicleCreated($event)"
+      ></app-monthly-vehicle-create>
+    </div>
+  </div>
+
+  <div class="modal-container" *ngIf="isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Editar vehiculo</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-monthly-vehicle-edit #monthlyVehicleEdit
+          (monthlyVehicleEdited)="handleMonthlyVehicleEdited($event)"
+          [monthlyVehicleToEdit]="monthlyVehicleToEdit"
+          >
+      </app-monthly-vehicle-edit>
+    </div>
+  </div>
+</div>

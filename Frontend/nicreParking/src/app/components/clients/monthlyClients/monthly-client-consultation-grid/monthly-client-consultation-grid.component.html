@@ -1,0 +1,76 @@
+<div>
+  <div class="container table-title">
+    <h3>Datos del cliente</h3>
+  </div>
+
+  <div class="container">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Telefono</th>
+            <th>Telefono Secundario</th>
+            <th>Inicio</th>
+          </tr>
+        </thead>
+          <tbody>
+            <ng-container>
+              <tr >
+                <td>
+                  <span>{{ monthlyClient.name }}</span>
+                </td>
+                <td>
+                  <span>{{ monthlyClient.lastname }}</span>
+                </td>
+                <td>
+                  <span>{{ monthlyClient.document }}</span>
+                </td>
+                <td>
+                  <span>{{ monthlyClient.phoneNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ monthlyClient.secondaryPhoneNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ monthlyClient.startingDate | date:'dd-MM-yyyy'}}</span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container table-title table-vehicles">
+    <h3>Datos de los vehiculos</h3>
+  </div>
+
+  <div class="container">
+    <div>
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Color</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehicle of monthlyClient.vehicles">
+
+            <td>{{ vehicle.brand }}</td>
+            <td>{{ vehicle.model }}</td>
+            <td>{{ vehicle.color }}</td>
+            <td>{{ vehicle.licenseplate }}</td>
+            <td>{{ vehicle.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

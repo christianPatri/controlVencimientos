@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="display-list-home">Configuraciones</h4>
+          <hr>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Valor</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let configItem of configurationItems; let i = index">
+              <td><span>{{ configItem.name}}</span></td>
+              <td><span>{{ configItem.value }}</span></td>
+              <td>
+                <button type="button" class="btn btn-success rounded-button grid-button" (click)="editConfigurationItem(configItem)">
+                  <i class="bi bi-pencil bi-md"></i> Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-12">
+
+        <app-configuration-items-modal #configurationItemEditModal
+          (configurationItemEditedModal)="handleEditConfigurationItem($event)"
+          [isEditing]="true"
+          [configurationItemToEdit]="_selectedConfigItemToEdit">
+        </app-configuration-items-modal>
+
+        <div class="row alerts">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div *ngIf="showingEditAlert" style="padding-top: 20px">
+              <div class="alert alert-danger col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+            <div *ngIf="showingEditConfirmationPanel" style="padding-top: 20px">
+              <div class="alert alert-success col-form-label-sm" role="alert">
+                {{ messageError }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

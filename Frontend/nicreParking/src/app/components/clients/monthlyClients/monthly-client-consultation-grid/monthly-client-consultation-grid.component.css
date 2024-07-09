@@ -1,0 +1,106 @@
+th {
+  background-color: #aad8a2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1000; /* Z-index para colocar encima de todo */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.actions-btns {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+}
+
+.actions-btns:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para los botones de acción */
+.actions-btns-2 {
+  margin-right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Estilos para los iconos de Material Design */
+.material-icons {
+  vertical-align: middle;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Espacio opcional entre la barra de búsqueda y la tabla */
+}
+
+.search-bar input[type="text"] {
+  margin-right: 10px; /* Espacio entre los campos de búsqueda */
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.table-secondary {
+  background-color: #f8f9fa;
+}
+
+
+Copiar código
+/* customer-vehicle-table.component.css */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.border {
+  border: 1px solid #dee2e6 !important;
+}
+
+.rounded {
+  border-radius: 0.25rem !important;
+}
+
+.table-title {
+  padding-bottom: 10px;
+}
+
+.table-vehicles {
+  padding-top: 10px;
+}

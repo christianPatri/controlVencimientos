@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="display-list-home">Reporte Parking Mensual</h4>
+          <hr>
+        </div>
+      </div>
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="container">
+        <div class="search-bar">
+          <input type="date" placeholder="Buscar por nombre" [(ngModel)]="from">
+          <input type="date" placeholder="Buscar por apellido" [(ngModel)]="to">
+
+          <button type="button" class="btn btn-success rounded-button grid-button" [disabled]="!from" (click)="filterMonthlyParkingReport()">
+            <i></i> Filtrar
+          </button>
+        </div>
+
+        <div>
+          <table class="table table-bordered table-striped table-hover table-sm table-responsive-md"
+               *ngIf="_monthlyParkingReport != undefined">
+            <thead class="thead-dark">
+              <tr>
+                <th>Total de pensiones</th>
+                <th>Total ingresos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span>{{ _monthlyParkingReport.totalPayments }}</span>
+                </td>
+                <td>
+                  <span>{{ _monthlyParkingReport.totalAmount }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div>
+          <div class="col-md-12">
+            <div class="row">
+              <h4 class="display-list-home">Pagos de Mensualidades</h4>
+              <hr>
+            </div>
+          </div>
+          <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Vehiculos</th>
+                <th>Fecha de pago</th>
+                <th>Nro Factura</th>
+                <th>Descripcion Factura</th>
+                <th>Monto Factura</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="_monthlyParkingReport != undefined">
+              <tr *ngFor="let item of _monthlyParkingReport.payments | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: _monthlyParkingReport.payments.length}; let i = index">
+                <td>
+                  <span>{{ item.clientName }}</span>
+                </td>
+                <td>
+                  <span>{{ item.clientDocument }}</span>
+                </td>
+                <td>
+                  <span>{{ item.clientVehicles }}</span>
+                </td>
+                <td>
+                  <span>{{ item.paymentDate  | date:'dd-MM-yyyy' }}</span>
+                </td>
+                <td>
+                  <span>{{ item.billNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ item.billDescription }}</span>
+                </td>
+                <td>
+                  <span>{{ item.billAmount }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ngx-pagination">
+            <pagination-controls
+              (pageChange)="_page = $event"
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+            >
+            </pagination-controls>
+          </div>
+
+          <button (click)="exportToExcel()" class="btn btn-success btn-excell" [disabled]="!_exportEnable">Exportar a Excel</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

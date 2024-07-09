@@ -1,0 +1,50 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home" (click)="showVehicleEntryPanel()" *ngIf="showEntry()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home" >Ingreso de Vehiculo</h3>
+        </div>
+      </div>
+
+      <div class="subMenu-container" *ngIf="showEntryPanel()">
+        <app-hourly-vehicle-entry
+          (entryCompleted)="handleEntryCompleted($event)"
+          [returnStatus]="returnStatus"
+          [errorExit]="errorExit"
+          [successMessage]="successMessage">
+        </app-hourly-vehicle-entry>
+      </div>
+    </div>
+
+    <div class="row list-home" (click)="showVehicleExitPanel()" *ngIf="showExit()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home">Entrega de vehiculo</h3>
+        </div>
+      </div>
+
+      <div class="subMenu-container" *ngIf="showExitPanel()">
+        <app-hourly-vehicle-exit
+          (exitCompleted)="handleExitCompleted($event)"
+          [returnStatusExit]="returnStatusExit"
+          [errorExit]="errorExit"
+          [successMessage]="successMessage">
+        </app-hourly-vehicle-exit>
+      </div>
+    </div>
+
+    <div class="row list-home" (click)="goToMainMenu()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home">Regresar al Menu Principal</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

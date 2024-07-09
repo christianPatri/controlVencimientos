@@ -1,0 +1,19 @@
+/* .home-title {
+  text-align: center;
+  margin-top: 50px;
+} */
+
+.home-description {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.hr-title {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.page-title {
+  background-color: rgb(170, 227, 154);
+
+}

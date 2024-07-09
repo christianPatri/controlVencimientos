@@ -1,0 +1,68 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+    [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home" (click)="showConsultationMonthlyClientPanel()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home" >Consulta y pagos de vehiculo mensual</h3>
+        </div>
+
+        <div class="consultation-component" *ngIf="getShowConsultationMonthlyClientPanel()">
+          <app-monthly-client-consultation
+              (checkDocumentCompleted)="handleCheckDocumentCompleted($event)"
+              (checklicenseplateCompleted)="handleChecklicenseplateCompleted($event)"
+              [returnMonthlyClient]="returnMonthlyClient"
+              [errorUpdate]="errorUpdate">
+          </app-monthly-client-consultation>
+        </div>
+      </div>
+    </div>
+
+    <div class="row list-home" (click)="showEntryMonthlyVehiclePanel()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home" >Ingreso de Vehiculo</h3>
+        </div>
+
+        <div *ngIf="getShowEntryMonthlyVehiclePanel()">
+          <app-monthly-client-vehicle-entry
+            (entryCompleted)="handleEntryVehicleCompleted($event)"
+            [returnStatusEntry]="returnExitEntryVehicle"
+            [returnErrorMessage]="returnError"
+            [errorUpdate]="errorUpdate">
+          </app-monthly-client-vehicle-entry>
+        </div>
+      </div>
+    </div>
+
+    <div class="row list-home" (click)="showExitMonthlyVehiclePanel()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home" >Salida de Vehiculo</h3>
+        </div>
+      </div>
+
+      <div *ngIf="getShowExitMonthlyVehiclePanel()">
+        <app-monthly-client-vehicle-exit
+          (exitCompleted)="handleExitVehicleCompleted($event)"
+          [returnStatusExit]="returnExitEntryVehicle"
+          [returnErrorMessage]="returnError"
+          [errorUpdate]="errorUpdate">
+        </app-monthly-client-vehicle-exit>
+      </div>
+    </div>
+
+    <div class="row list-home" (click)="goToMainMenu()">
+      <div class="col-md-12">
+        <div class="row">
+          <h3 class="display-list-home">Regresar al Menu Principal</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

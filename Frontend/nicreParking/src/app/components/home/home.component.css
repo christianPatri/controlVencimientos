@@ -1,0 +1,27 @@
+.home-title {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .home-description{
+    text-align: center;
+    margin-top: 0,1cm;
+  }
+  
+  .list-home{
+    text-align: center;
+    border-style: solid;
+    border-color: brown;
+    margin-top: 1cm;
+  }
+  
+  .display-list-home{
+    text-align: center;
+    padding-top: 6%;
+    float: none;
+  }
+
+.login-section{
+    text-align: center;
+    margin-left: 30%;
+}

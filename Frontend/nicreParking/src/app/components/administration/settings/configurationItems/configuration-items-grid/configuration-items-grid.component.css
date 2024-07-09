@@ -1,0 +1,85 @@
+/* Estilo adicional para el contenido principal */
+.col-md-10 {
+  padding: 0 15px;
+}
+
+/* Otros estilos personalizados */
+.home-title {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-description {
+  text-align: center;
+  margin-top: 0.1cm;
+}
+
+.list-home {
+  text-align: center;
+  border-style: solid;
+  border-color: brown;
+  margin-top: 1cm;
+}
+
+.display-list-home {
+  text-align: center;
+  padding-top: 1%;
+  float: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #aad8a2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1000; /* Z-index para colocar encima de todo */
+}
+
+/* Estilos para centrar el spinner */
+.grid-button {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+.rounded-button {
+  border-radius: 20px; /* Ajusta el valor según tu preferencia */
+}
+
+.bi-lg {
+  font-size: 16px; /* Tamaño personalizado */
+  font-weight: bold;
+}
+
+.btn-edit {
+  background-color: cadetblue !important;
+}
+
+.btn-delete {
+  background-color: #972a0c !important;
+}
+
+
+.add-vehicle-button {
+  margin-bottom: 16px;
+}
