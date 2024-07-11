@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessLogic.Settings;
-using BusinessLogic.Vehicles;
 using Dto.Settings.ConfigurationItems;
 using IService.Settings;
 using System;
@@ -15,16 +14,13 @@ namespace Services.Settings
     {
         private SettingLogic _settingLogic;
         private readonly IMapper _mapper;
-        private readonly MonthlyVehicleLogic _monthlyVehicleLogic;
 
         public SettingService(
             SettingLogic settingLogic,
-            IMapper mapper,
-            MonthlyVehicleLogic monthlyVehicleLogic)
+            IMapper mapper)
         {
             _settingLogic = settingLogic;
             _mapper = mapper;
-            _monthlyVehicleLogic = monthlyVehicleLogic;
         }
 
         public List<ConfigurationItemDto> GetConfigurationItems()
@@ -45,11 +41,7 @@ namespace Services.Settings
 
             var updatedItem = _settingLogic.UpdateConfigurationItem(configItemToUpdate, input);
 
-            if(isMonthlyPrice)
-            {
-                //Tengo que actualizar todos los precios mensuales !!
-                _monthlyVehicleLogic.UpdateMonthlyVehiclesPrice(oldValue, input.Value);
-            }
+            
 
             return _mapper.Map<ConfigurationItemDto>(updatedItem);
         }

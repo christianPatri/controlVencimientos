@@ -1,5 +1,4 @@
 ﻿using Dto.Settings.ConfigurationItems;
-using IService.Reports;
 using IService.Settings;
 using Microsoft.AspNetCore.Mvc;
 using webApi.Filters;
