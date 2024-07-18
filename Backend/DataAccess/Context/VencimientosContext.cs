@@ -1,4 +1,5 @@
 ﻿
+using Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,10 +11,11 @@ namespace DataAccess.Context
 {
     public class VencimientosContext : DbContext
     {
-        //public DbSet<MonthlyClient> MonthlyClients { get; set; }
+        public DbSet<ProductSupplier> ProductSuppliers { get; set; }
 
+        public DbSet<Product> Products { get; set; }
 
-        //public DbSet<ConfigurationItem> ConfigurationItems { get; set; }
+        public DbSet<ProductItem> ProductItems { get; set; }
 
         public VencimientosContext(DbContextOptions options) : base(options) { }
 
