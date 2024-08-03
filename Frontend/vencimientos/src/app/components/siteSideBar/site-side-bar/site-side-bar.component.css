@@ -1,0 +1,55 @@
+/* sidebar.component.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 16.6666%;
+  /* max-width: 208px; */
+  background-color: #aad8a2; /* Color de fondo del sidebar */
+  padding-top: 0.5rem; /* Ajuste según sea necesario */
+}
+
+.nav-link {
+  color: #fff; /* Color de texto de los enlaces */
+}
+
+
+.sidebar hr.sidebar-divider {
+  margin: 0 1rem 1rem;
+}
+
+
+.sidebar-brand {
+  /* height: $topbar-base-height; */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  z-index: 1;
+
+  /* .sidebar-brand-icon i {
+      font-size: 2rem;
+  } */
+
+  /* .sidebar-brand-text {
+      display: none;
+  } */
+}
+
+.my-0 {
+  margin-top: 0 !important;
+}
+
+.sidebar .sidebar-heading {
+  text-align: center;
+  padding: 0 1rem;
+  font-weight: 800;
+  font-size: 0.65rem;
+
+}
+
+

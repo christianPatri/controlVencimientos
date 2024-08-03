@@ -1,0 +1,106 @@
+<div>
+  <div class="container">
+    <h3 class="header-title">Productos</h3>
+    <hr class="hr-header">
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="nombreFilter">
+      <input type="text" placeholder="Buscar por codigo De Barras" [(ngModel)]="barCodeFilter" *ngIf="!isAddingProductItems">
+      <input type="text" placeholder="Buscar por descripcion" [(ngModel)]="descriptionFilter">
+      <button type="button" class="btn btn-success rounded-button grid-button" (click)="filterProducts()">
+        <i></i> Filtrar
+      </button>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Codigo de Barras</th>
+            <th>Descripcion</th>
+            <th>Proveedor</th>
+            <th>Dias Previos de notificacion</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+          <tbody>
+            <ng-container *ngFor="let product of filteredProducts | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: filteredProducts.length}; let i = index">
+              <tr >
+                <td>
+                  <span>{{ product.name }}</span>
+                </td>
+                <td>
+                  <span>{{ product.barCode }}</span>
+                </td>
+                <td>
+                  <span>{{ product.description }}</span>
+                </td>
+                <td>
+                  <span>{{ product.supplierName }}</span>
+                </td>
+                <td>
+                  <span>{{ product.amountDaysPreviousNotification }}</span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="openDeleteProductModal(product)" *ngIf="!isAddingProductItems">
+                    <i class="bi bi-trash bi-md"></i> Eliminar
+                  </button>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="viewProductFile(product)" *ngIf="!isAddingProductItems">
+                    <i class="bi bi-eye bi-md"></i> Ver Ficha
+                  </button>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="addProductItems(product)" *ngIf="isAddingProductItems">
+                    <i class="bi bi-plus bi-lg"></i> Ingresar
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+      </table>
+
+      <div class="ngx-pagination">
+        <pagination-controls
+          (pageChange)="_page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        >
+        </pagination-controls>
+      </div>
+
+      <div>
+        <app-generic-modal #submitModal
+          (submittedButton)="handleDeleteProductModalEvent($event)"
+          [modalTitle]="_submitModalTitle"
+          [isDeletingProduct]="_submitedModalIsDeletingProduct"
+          [productToDelete]="_selectedProductToDelete"
+          >
+        </app-generic-modal>
+      </div>
+
+      <div class="row alerts">
+        <div class="d-flex justify-content-center animated fadeIn fast">
+          <div *ngIf="showingProductAlert" style="padding-top: 20px">
+            <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+          <div *ngIf="showingProductConfirmationPanel" style="padding-top: 20px">
+            <div class="alert alert-success col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" *ngIf="!isAddingProductItems">
+      <div>
+        <button type="button" class="btn btn-success rounded-button add-client-button" (click)="navigateToProductGenerator()">
+          <i class="bi bi-plus bi-lg"></i> Crear Producto
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

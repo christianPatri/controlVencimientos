@@ -1,0 +1,28 @@
+<div class="modal" [ngClass]="{ 'open': isOpen }">
+  <div class="modal-overlay"></div>
+  <div class="modal-container" *ngIf="!isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Nuevo Proveedor</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-suppliers-create #suppliersCreate
+        (supplierCreated)="handleSupplierCreated($event)"
+      ></app-suppliers-create>
+    </div>
+  </div>
+
+  <div class="modal-container" *ngIf="isEditing">
+    <div class="modal-header">
+      <h5 class="modal-title">Editar Proveedor</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-suppliers-edit #suppliersEdit
+          (supplierEdited)="handleSupplierEdited($event)"
+          [supplierToEdit]="supplierToEdit"
+          >
+      </app-suppliers-edit>
+    </div>
+  </div>
+</div>

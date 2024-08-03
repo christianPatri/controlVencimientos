@@ -1,4 +1,30 @@
 
-<app-navigation-bar></app-navigation-bar>
 
-<router-outlet></router-outlet>
+
+<!-- app.component.html -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 ">
+      <div class="sideBar">
+        <app-site-side-bar></app-site-side-bar>
+      </div>
+
+    </div>
+    <div class="col-md-10 navBar">
+      <app-navigation-bar></app-navigation-bar>
+      <!-- Contenido principal de la aplicación Angular -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-10">
+      <!-- Contenido principal de la aplicación Angular -->
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

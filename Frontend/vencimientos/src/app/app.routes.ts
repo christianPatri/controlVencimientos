@@ -16,11 +16,16 @@ import { HourlylyParkingReportComponent } from './components/administration/repo
 import { SettingsComponent } from './components/administration/settings/settings/settings.component';
 import { MonthlyParkingReportComponent } from './components/administration/reports/monthly-parking-report/monthly-parking-report.component';
 import { MonthlyVehicleMovementsComponent } from './components/administration/monthlyVehicles/monthly-vehicle-movements/monthly-vehicle-movements.component';
+import { SuppliersComponent } from './components/administration/suppliers/suppliers/suppliers.component';
+import { ProductsComponent } from './components/administration/products/products/products.component';
+import { SuppliersGeneratorComponent } from './components/administration/suppliers/suppliers-generator/suppliers-generator.component';
+import { ProductsGeneratorComponent } from './components/administration/products/products-generator/products-generator.component';
+import { ProductItemsGeneratorComponent } from './components/common/productItems/product-items-generator/product-items-generator.component';
+import { CalendarComponent } from './components/common/calendar/calendar/calendar.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  // { path: 'clients', component: ClientsComponent },
   { path: 'monthlyClients', component: MonthlyClientsComponent },
   { path: 'hourlyClients', component: HourlyClientsComponent },
   { path: 'nightlyClients', component: NightlyClientsComponent },
@@ -35,5 +40,12 @@ export const routes: Routes = [
   { path: 'administration/hourlyReport', component: HourlylyParkingReportComponent, canActivate: [ AuthGuardService] },
   { path: 'administration/monthlyReport', component: MonthlyParkingReportComponent, canActivate: [ AuthGuardService] },
   { path: 'administration/settings', component: SettingsComponent, canActivate: [ AuthGuardService] },
+  { path: 'administration/suppliers', component: SuppliersComponent, canActivate: [ AuthGuardService] },
+  { path: 'administration/suppliers/new', component: SuppliersGeneratorComponent, canActivate: [ AuthGuardService ] },
+  { path: 'administration/products', component: ProductsComponent, canActivate: [ AuthGuardService] },
+  { path: 'administration/products/new', component: ProductsGeneratorComponent, canActivate: [ AuthGuardService ] },
+  { path: 'productItems/new', component: ProductItemsGeneratorComponent, canActivate: [ AuthGuardService ] },
+  { path: 'calendar', component: CalendarComponent },
+
   { path: '**', pathMatch: 'full', redirectTo: '/home'}
 ];

@@ -1,0 +1,106 @@
+<div>
+  <div class="container">
+    <h3 class="header-title">Proveedores</h3>
+    <hr class="hr-header">
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por nombre" [(ngModel)]="nombreFilter">
+      <input type="text" placeholder="Buscar por rut" [(ngModel)]="rutFilter">
+      <input type="text" placeholder="Buscar por vendedor" [(ngModel)]="sellerFilter">
+      <button type="button" class="btn btn-success rounded-button grid-button" (click)="filterSuppliers()">
+        <i></i> Filtrar
+      </button>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>RUT</th>
+            <th>Descripcion</th>
+            <th>Telefono</th>
+            <th>Vendedor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+          <tbody>
+            <ng-container *ngFor="let supplier of filteredSuppliers | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: filteredSuppliers.length}; let i = index">
+              <tr >
+                <td>
+                  <span>{{ supplier.name }}</span>
+                </td>
+                <td>
+                  <span>{{ supplier.rut }}</span>
+                </td>
+                <td>
+                  <span>{{ supplier.description }}</span>
+                </td>
+                <td>
+                  <span>{{ supplier.phoneNumber }}</span>
+                </td>
+                <td>
+                  <span>{{ supplier.seller }}</span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="openDeleteSupplierModal(supplier)">
+                    <i class="bi bi-trash bi-md"></i> Eliminar
+                  </button>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="viewSupplierFile(supplier)">
+                    <i class="bi bi-eye bi-md"></i> Ver Ficha
+                  </button>
+                  <button type="button" class="btn btn-success rounded-button grid-button" (click)="viewSupplierProducts(supplier)">
+                    <i class="bi bi-eye bi-md"></i> Ver Productos
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+      </table>
+
+      <div class="ngx-pagination">
+        <pagination-controls
+          (pageChange)="_page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        >
+        </pagination-controls>
+      </div>
+
+      <div>
+        <app-generic-modal #submitModal
+          (submittedButton)="handleDeleteSupplierModalEvent($event)"
+          [modalTitle]="_submitModalTitle"
+          [isDeletingSupplier]="_submitedModalIsDeletingSupplier"
+          [supplierToDelete]="_selectedSupplierToDelete"
+          >
+        </app-generic-modal>
+      </div>
+
+      <div class="row alerts">
+        <div class="d-flex justify-content-center animated fadeIn fast">
+          <div *ngIf="showingSupplierAlert" style="padding-top: 20px">
+            <div class="alert alert-danger col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+          <div *ngIf="showingSupplierConfirmationPanel" style="padding-top: 20px">
+            <div class="alert alert-success col-form-label-sm" role="alert">
+              {{ messageError }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div>
+        <button type="button" class="btn btn-success rounded-button add-client-button" (click)="navigateToSupplierGenerator()">
+          <i class="bi bi-plus bi-lg"></i> Crear Proveedor
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

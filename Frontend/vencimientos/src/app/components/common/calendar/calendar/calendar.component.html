@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row list-home">
+
+    <div class="calendar">
+      <div class="calendar-header">
+        <!-- <button (click)="previousMonth()">Anterior</button> -->
+        <button type="button" class="btn btn-success rounded-button grid-button" (click)="previousMonth()">
+          <i class="bi bi-chevron-left bi-md"></i> Anterior
+        </button>
+        <span class="currentMonth">{{ currentMonthName }} {{ currentYear }}</span>
+        <!-- <button (click)="nextMonth()">Siguiente</button> -->
+        <button type="button" class="btn btn-success rounded-button grid-button" (click)="nextMonth()">
+          Siguiente <i class="bi bi-chevron-right bi-md"></i>
+        </button>
+      </div>
+      <div class="calendar-weekdays">
+        <div *ngFor="let day of weekDays" class="weekday">{{ day }}</div>
+      </div>
+      <div class="calendar-body">
+        <div *ngFor="let week of weeks" class="week">
+          <div *ngFor="let day of week" class="day" (click)="navigateToDay(day)"
+                    [attr.data-bs-toggle]="day.date !== null ? 'tooltip' : null"
+                    [attr.title]="getTooltipText(day)">
+            <div class="date">{{ day.date }}</div>
+            <div class="icons" *ngIf="day.date !== null">
+              <div *ngFor="let icon of day.icons" [ngClass]="icon.color" class="icon"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
