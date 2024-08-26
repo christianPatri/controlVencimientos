@@ -26,6 +26,11 @@ namespace Domain.Products
 
         public DateTime EndDate { get; set; }
 
+        public ProductSupplier Supplier { get; set; }
+        public int SupplierId { get; set; }
+
+        public List<ProductItem> ProductItems { get; set; }
+
         public Product()
         {
 

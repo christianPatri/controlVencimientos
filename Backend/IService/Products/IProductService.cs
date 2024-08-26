@@ -11,8 +11,14 @@ namespace IService.Products
     {
         ProductDto CreateProduct(ProductCreateDto productCreate);
 
+        List<ProductDto> CreateProducts(ProductsGeneratorDto productCreate);
+
         ProductDto GetProductByCodeBar(string codeBar);
 
         ProductDto DeleteProduct(ProductDto product);
+
+        List<ProductDto> GetActiveProducts();
+
+        List<ProductDto> GetSupplierProducts(int supplierId);
     }
 }

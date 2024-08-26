@@ -7,6 +7,6 @@ namespace IService.Sessions
     {
         bool IsCorrectToken(Guid token);
 
-        Guid Login(UserLoginDto userLoginDto);
+        UserDto Login(UserLoginDto userLoginDto);
     }
 }

@@ -26,6 +26,8 @@ namespace BusinessLogic.Users
         public User CreateUser(UserDto user)
         {
             User newUser = new User(user.Name, user.Lastname, user.Username, user.Password);
+            newUser.Role = (Domain.Enums.UserRoles) user.Role;
+            newUser.IsActive = true;
 
             _userRepository.AddAndSave(newUser);
 
@@ -44,12 +46,12 @@ namespace BusinessLogic.Users
         {
             var existsUser = _userRepository.List().Any(u => u.Username.Equals(user.Username));
 
-            if (existsUser) throw new ValidationException($"El usuario con Nombre de Usuario: {user.Username} en el sistema");
+            if (existsUser) throw new ValidationException($"El usuario: {user.Username} ya existe en el sistema");
         }
 
         public IEnumerable<User> GetActiveUsers()
         {
-            var users = _userRepository.List().ToList();
+            var users = _userRepository.List().Where(u => u.IsActive).ToList();
 
             return users;
         }
@@ -59,36 +61,26 @@ namespace BusinessLogic.Users
             return _userRepository.List().FirstOrDefault(u => u.Username.Equals(username));
         }
 
+        //Borrado logico
         public void DeleteUser(User user)
         {
             _nullEntityValidator.ValidateById(user, "Usuario");
-            _userRepository.Delete(user);
+            user.IsActive = false;
+            _userRepository.Update(user);
         }
 
         public void ValidateUpdate(UserDto userWithUpdates, User userToUpdate)
         {
             _nullEntityValidator.ValidateById(userToUpdate, "Usuario");
             this.ValidateFields(userWithUpdates);
-
-            //if (!userToUpdate.Username.Equals(userWithUpdates.Username))
-            //{
-            //    this.ValidateExistsUsername(userWithUpdates.Username);
-            //}
         }
-
-        //private void ValidateExistsUsername(string username)
-        //{
-        //    if (_userRepository.List().Any(u => u.Username.ToLower().Equals(username.ToLower())))
-        //    {
-        //        throw new ValidationException("El nombre de usuario del usuario que desea modificar ya existe.");
-        //    }
-        //}
 
         public void UpdateUser(UserDto userWithUpdates, User user)
         {
             user.Password = userWithUpdates.Password;
             user.Name = userWithUpdates.Name;
             user.Lastname = userWithUpdates.Lastname;
+            user.Role = (Domain.Enums.UserRoles)userWithUpdates.Role;
 
             _userRepository.Update(user);
         }

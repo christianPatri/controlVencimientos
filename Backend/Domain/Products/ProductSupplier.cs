@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Products
 {
@@ -27,9 +25,7 @@ namespace Domain.Products
 
         public int Interval { get; set; }
 
-        public DateTime VisitDay { get; set; }
-        //Ver como manejarlo, si como dia de la semana de visita, o que o Dias de visitas, tipo un enum
-        // 1 = lunes, 2 = martes, etc ?
+        public List<SupplierVisitDay> VisitDays { get; set; }
 
         public bool IsActive {  get; set; }
 

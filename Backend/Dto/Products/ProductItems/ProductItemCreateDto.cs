@@ -12,6 +12,10 @@ namespace Dto.Products.ProductItems
 
         public int ProductId { get; set; }
 
+        public ProductDto Product { get; set; }
+
+        public string ProductCodeBar { get; set; }
+
         public DateTime ExpirationDate { get; set; }
 
         public int Amount { get; set; }

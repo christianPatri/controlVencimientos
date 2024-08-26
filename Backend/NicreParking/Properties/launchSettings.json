@@ -22,7 +22,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/clients",
-      "applicationUrl": "http://10.211.55.3:6000",
+      "applicationUrl": "http://10.211.55.3:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

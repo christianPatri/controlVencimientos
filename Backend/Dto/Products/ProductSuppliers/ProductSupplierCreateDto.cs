@@ -20,7 +20,7 @@ namespace Dto.Products.ProductSuppliers
 
         public int Interval { get; set; }
 
-        public DateTime VisitDay { get; set; }
+        public List<int> VisitDays { get; set; }
 
         public string PhoneNumber { get; set; }
 

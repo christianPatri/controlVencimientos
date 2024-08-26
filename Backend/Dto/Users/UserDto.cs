@@ -20,6 +20,10 @@ namespace Dto.Users
 
         public DateTime CreatedDate { get; set; }
 
+        public Guid Token { get; set; }
+
+        public int Role { get; set; }
+
         public UserDto()
         {
 

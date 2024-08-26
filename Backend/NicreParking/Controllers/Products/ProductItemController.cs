@@ -3,6 +3,8 @@ using Dto.Products.ProductItems;
 using Dto.Products.Products;
 using IService.Products;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System;
 using webApi.Filters;
 
 namespace webApi.Controllers.Products
@@ -48,6 +50,24 @@ namespace webApi.Controllers.Products
         //    }
         //}
 
+        
+
+        [HttpGet("GetProductItemsForDateExpiration")]
+        public IActionResult GetProductItemsForExpiration([FromQuery] ProductItemsExpirationDto expiration)
+        {
+            try
+            {
+                var result = _productItemService.GetProductItemsForDateExpiration(expiration.ExpirationDate);
+                return Ok(result);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+
+
         [HttpPost("CreateProductItem")]
         public IActionResult CreateProductItem([FromBody] ProductItemCreateDto productItem)
         {
@@ -63,11 +83,25 @@ namespace webApi.Controllers.Products
         }
 
         [HttpPost("CreateProductItems")]
-        public IActionResult CreateProductItems([FromBody] ProductItemsCreateDto productItem)
+        public IActionResult CreateProductItems([FromBody] ProductItemsGeneratorDto productItem)
         {
             try
             {
                 var result = _productItemService.GenerateProductItems(productItem);
+                return Ok(result);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+        [HttpPost("CheckProductItem")]
+        public IActionResult CheckProductItem([FromBody] ProductItemCheckDto productItemCheck)
+        {
+            try
+            {
+                var result = _productItemService.CheckProductItem(productItemCheck);
                 return Ok(result);
             }
             catch (ValidationException ve)

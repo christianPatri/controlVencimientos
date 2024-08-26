@@ -27,7 +27,7 @@ namespace webApi.Controllers.Products
             _productService = productService;
         }
 
-        [HttpGet("GetProductBy/{codebar}")]
+        [HttpGet("CodeBar/{codebar}")]
         public IActionResult GetProductBy(string codebar)
         {
             try
@@ -41,6 +41,38 @@ namespace webApi.Controllers.Products
                 return BadRequest(ve.Message);
             }
         }
+
+        [HttpGet("ActiveProducts")]
+        public IActionResult GetActiveProducts()
+        {
+            try
+            {
+                var products = _productService.GetActiveProducts();
+
+                return Ok(products);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+        [HttpGet("GetSupplierProducts/{supplierId}")]
+        public IActionResult GetSupplierProducts(int supplierId)
+        {
+            try
+            {
+                var products = _productService.GetSupplierProducts(supplierId);
+
+                return Ok(products);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+        
 
         [HttpPost("DeleteProduct")]
         public IActionResult DeleteProduct([FromBody] ProductDto product)
@@ -62,6 +94,20 @@ namespace webApi.Controllers.Products
             try
             {
                 var result = _productService.CreateProduct(product);
+                return Ok(result);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+        [HttpPost("CreateProducts")]
+        public IActionResult CreateProducts([FromBody] ProductsGeneratorDto productGenerator)
+        {
+            try
+            {
+                var result = _productService.CreateProducts(productGenerator);
                 return Ok(result);
             }
             catch (ValidationException ve)

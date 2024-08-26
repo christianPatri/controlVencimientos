@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dto.Products.ProductItems
 {
-    public class ProductItemsCreateDto
+    public class ProductItemsGeneratorDto
     {
         public List<ProductItemCreateDto> ProductItemsCreate { get; set; } 
-        public ProductItemsCreateDto()
+        public ProductItemsGeneratorDto()
         {
 
         }

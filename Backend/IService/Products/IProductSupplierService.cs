@@ -12,5 +12,9 @@ namespace IService.Products
         ProductSupplierDto CreateSupplier(ProductSupplierCreateDto supplier);
 
         ProductSupplierDto DeleteSupplier(ProductSupplierDto supplier);
+
+        List<ProductSupplierDto> GetActiveSuppliers();
+
+        ProductSupplierDto GetSupplierById(int supplierId);
     }
 }

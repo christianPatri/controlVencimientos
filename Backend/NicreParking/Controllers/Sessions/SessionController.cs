@@ -30,8 +30,8 @@ namespace webApi.Controllers.Sessions
         {
             try
             {
-                var token = this._sessionService.Login(userLogin);
-                return Ok(token);
+                var user = this._sessionService.Login(userLogin);
+                return Ok(user);
             }
             catch (ValidationException ve)
             {
