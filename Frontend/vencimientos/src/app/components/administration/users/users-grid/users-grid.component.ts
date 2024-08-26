@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { User } from '../../../../models/users/user';
 import { UsersModalComponent } from '../users-modal/users-modal.component';
+import { UserRoles } from '../../../../models/users/userRoles';
+import { GenericModalComponent } from '../../../common/modals/generic-modal/generic-modal.component';
 
 @Component({
   selector: 'app-users-grid',
   standalone: true,
-  imports:[CommonModule, FormsModule, ReactiveFormsModule, UsersModalComponent ],
+  imports:[CommonModule, FormsModule, ReactiveFormsModule, UsersModalComponent, GenericModalComponent ],
   templateUrl: './users-grid.component.html',
   styleUrls: ['./users-grid.component.css']
 })
@@ -21,6 +23,7 @@ export class UsersGridComponent implements OnInit {
 
   //isEditingUser: boolean = false;
   userToEdit!: User;
+  userToDelete!: User;
 
   @Input() users!: User[];
   @Input() successMessage: string = "";
@@ -31,6 +34,11 @@ export class UsersGridComponent implements OnInit {
 
   @ViewChild('usersEditModal') usersModal!: UsersModalComponent;
   @ViewChild('usersCreateModal') usersCreateModal!: UsersModalComponent;
+
+
+  @ViewChild('submitModal') submitModal!: GenericModalComponent;
+  _submitModalTitle: string = "Eliminar Usuario";
+
 
   messageError: string = "";
   showingUserAlert: boolean = false;
@@ -53,11 +61,15 @@ export class UsersGridComponent implements OnInit {
     this.usersModal.openModal();
   }
 
-  deleteUser(index: any) {
+  openDeleteUserModal(index: any) {
+    this.userToDelete = this.users[index];
+    this.submitModal.openModal();
+  }
+
+  handleDeleteUserModalEvent(index: any) {
     this.hideConfirmation();
     this.hideAlert();
-    let userToDelete = this.users[index];
-    this.userDeleteEvent.emit(userToDelete);
+    this.userDeleteEvent.emit(this.userToDelete);
   }
 
   handleEditUser(editedUser: User) {
@@ -72,6 +84,10 @@ export class UsersGridComponent implements OnInit {
       user.lastname.toLowerCase().includes(this.apellidoFilter.toLowerCase()) &&
       user.username.toLowerCase().includes(this.usernameFilter.toLowerCase())
     );
+  }
+
+  getUserRoleByRoleId(roleId: number){
+    return UserRoles[roleId as unknown as keyof typeof UserRoles] || 'Unknown Role';
   }
 
   openUsersModal() {

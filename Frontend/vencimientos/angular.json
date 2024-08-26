@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nicreParking": {
+    "nicreVencimientos": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/nicre-parking",
+            "outputPath": "dist/nicre-vencimientos",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "nicreParking:build:production"
+              "buildTarget": "nicreVencimientos:build:production"
             },
             "development": {
-              "buildTarget": "nicreParking:build:development"
+              "buildTarget": "nicreVencimientos:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "nicreParking:build"
+            "buildTarget": "nicreVencimientos:build"
           }
         },
         "test": {

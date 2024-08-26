@@ -59,6 +59,11 @@
   cursor: pointer;
 }
 
+.day.today {
+  background-color: #ffe0b2;
+  border-color: #ff9800;
+}
+
 .week {
   display: contents;
 }
@@ -102,4 +107,12 @@
 
 .icon.green {
   background-color: green;
+}
+
+.icon.black {
+  background-color: black;
+}
+
+.icon.blue {
+  background-color: blue;
 }

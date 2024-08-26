@@ -1,17 +1,26 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../../../models/users/user';
+import { UserRoles } from '../../../../models/users/userRoles';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './users-edit.component.html',
   styleUrl: './users-edit.component.css'
 })
 export class UsersEditComponent implements OnInit {
   user: User = new User();
   myForm: FormGroup;
+
+  userRoles = Object.keys(UserRoles)
+    .filter(key => isNaN(Number(key)))
+    .map(key => ({
+      id: UserRoles[key as keyof typeof UserRoles],
+      name: key
+    }));
 
   @Output() userEdited = new EventEmitter<User>();
   @Input() userToEdit!: User;
@@ -24,47 +33,53 @@ export class UsersEditComponent implements OnInit {
       lastname: ['', [Validators.required]],
       username: ['', [Validators.required], ],
       password: ['', [Validators.required]],
+      role: [null, Validators.required] // Usando FormControl para el select
     });
 
     this.myForm.get('username')?.disable();
   }
 
   ngOnInit(): void {
+    if (this.userToEdit) {
+      this.updateForm(this.userToEdit);
+    }
+
   }
 
-  editUser(){
-    if (this.myForm.invalid ) { return; }
+  private updateForm(user: User) {
+    this.myForm.patchValue({
+      name: user.name,
+      lastname: user.lastname,
+      username: user.username,
+      password: user.password,
+      role: user.role
+    });
+  }
 
-    if(this.myForm.valid){
-      this.user.name = this.myForm.value.name;
-      this.user.lastname = this.myForm.value.lastname;
-      this.user.password = this.myForm.value.password;
-      this.user.username = this.user.username;
+  editUser() {
+    if (this.myForm.invalid) {
+      return;
+    }
 
-      this.userEdited.emit(this.user);
+    if (this.myForm.valid) {
+      // Update the user object with form values
+      const updatedUser = this.myForm.value as User;
+      updatedUser.username = this.userToEdit.username; // Keep the original username
+      this.userEdited.emit(updatedUser);
     }
   }
 
-  clearFormFields(){
+  clearFormFields() {
     this.myForm.reset();
-    this.user.lastname =  "";
-    this.user.name = "";
-    this.user.password = "";
-    this.user.password = "";
+    this.myForm.patchValue({
+      username: {value: '', disabled: true} // Reset username field
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // Check for changes in specific properties
-
-
     if (changes['userToEdit'] && !changes['userToEdit'].firstChange) {
-      let user = changes['userToEdit'].currentValue;
-      this.user.name = user.name;
-      this.user.lastname = user.lastname;
-      this.user.password = user.password;
-      this.user.username = user.username;
+      const user = changes['userToEdit'].currentValue;
+      this.updateForm(user);
     }
-
-    // Perform any necessary updates based on the changes
   }
 }

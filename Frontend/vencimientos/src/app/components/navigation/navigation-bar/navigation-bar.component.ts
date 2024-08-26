@@ -44,6 +44,13 @@ export class NavigationBarComponent implements OnInit {
     return this.sessionService.isAuthenticated();
   }
 
+  hasRole(role: string) {
+    let roles = [];
+    roles.push(role);
+
+    return this.sessionService.hasRole(roles);
+  }
+
   toggleDropdown(): void {
     this.showDropdown = !this.showDropdown;
     // Si se abre el menú, agregamos el listener para cerrarlo cuando se haga clic en otro lugar

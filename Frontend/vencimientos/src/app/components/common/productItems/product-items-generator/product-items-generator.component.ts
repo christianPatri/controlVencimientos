@@ -3,11 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from '../../../../models/products/product';
-import { ProductsGenerator } from '../../../../models/products/productsGenerator';
-import { ProductSupplier } from '../../../../models/suppliers/productSupplier';
 import { ProductsService } from '../../../../services/products/products.service';
-import { SuppliersService } from '../../../../services/suppliers/suppliers.service';
-import { ProductsModalComponent } from '../../../administration/products/products-modal/products-modal.component';
 import { GenericModalComponent } from '../../modals/generic-modal/generic-modal.component';
 import { PageTitleComponent } from '../../pagestitles/page-title/page-title.component';
 import { SpinnerComponent } from '../../spinner/spinner/spinner.component';
@@ -27,24 +23,20 @@ import { ProductItemCreate } from '../../../../models/productItems/productItemCr
 })
 export class ProductItemsGeneratorComponent implements OnInit{
 
-
   _pageTitle: string = "Ingreso de productos";
-
 
   barCodeFilter: string = '';
   productNameFilter: string = '';
   filteredProductItems: any[] = [];
 
-
   isAddingProductItems: boolean = true;
-
   _productList: Product[] = [];
-
   _productSelected: Product = new Product();
 
   @ViewChild('productItemsModal') productItemsModal!: ProductItemsModalComponent;
 
   _isLoading: Boolean = true;
+  _isLoadingProducts: boolean = true;
   _newProductItems: ProductItem[] = [];
   _newProductItem: ProductItem = new ProductItem();
 
@@ -54,10 +46,7 @@ export class ProductItemsGeneratorComponent implements OnInit{
   _isEditingProductItem: boolean = false;
   _indexProductItemEdit!: number;
 
-// Product Items arriba
-
-
-
+  // Product Items arriba
   showingCreateProductStep1Alert = false;
   showingCreateProductStep1ConfirmationPanel = false;
   messageError = '';
@@ -66,27 +55,12 @@ export class ProductItemsGeneratorComponent implements OnInit{
   showingCreateProductConfirmationPanel = false;
 
   _disableAllButtons: boolean = false;
-
   @ViewChild('submitModal') submitModal!: GenericModalComponent;
 
   _submitModalTitle: string = "Creacion de productos";
   _submitedModalIsCreating: boolean = true;
-
-  //
-  // _isLoading: Boolean = true;
-  // _newProducts: Product[] = [];
-  // _newProduct: Product = new Product();
-
   _showProductsModal: boolean = true;
   _productLoaded: boolean = false;
-
-  // _clickedAddSupplier: boolean = false;
-  // _showAddSupplier: boolean = false;
-  // _showAddSupplierSection: boolean = false;
-  // _productHasSupplier: boolean = false;
-
-  // _suppliers: ProductSupplier[] = [];
-  // _selectedSupplierId: number = -1;
 
   constructor(
     private productsService: ProductsService,
@@ -111,14 +85,17 @@ export class ProductItemsGeneratorComponent implements OnInit{
       if(this.productNameFilter == null || this.productNameFilter == undefined || this.productNameFilter == ""){
         //filtro por codigo de barras
         this._isLoading = true;
+        this._isLoadingProducts = true;
 
         this.productsService.getProductByCodeBar(this.barCodeFilter).subscribe(
           (response: Product) => {
             this._productList = [];
             this._productList.push(response);
             this._isLoading = false;
+            this._isLoadingProducts = false;
           }, (err) => {
             this._isLoading = false;
+            this._isLoadingProducts = false;
             console.log(err);
           });
       } else {
@@ -240,13 +217,24 @@ export class ProductItemsGeneratorComponent implements OnInit{
   // }
 
   mapModalProductCreate(newProduct: ProductItem){
-    var productItem = new ProductItem();
-    productItem.product = newProduct.product;
-    productItem.amount = newProduct.amount;
-    productItem.expirationDate = newProduct.expirationDate;
-    productItem.productId = newProduct.product.id;
 
-    this._newProductItems.push(productItem);
+    let alreadyCreated = this._newProductItems.find(p => p.product.id == newProduct.product.id
+      && p.expirationDate.getFullYear == newProduct.expirationDate.getFullYear && p.expirationDate.getMonth == newProduct.expirationDate.getMonth
+      && p.expirationDate.getDay == newProduct.expirationDate.getDay)
+
+    if(alreadyCreated != null ){
+      alreadyCreated.amount += newProduct.amount;
+    }
+    else{
+      var productItem = new ProductItem();
+      productItem.product = newProduct.product;
+      productItem.amount = newProduct.amount;
+      productItem.expirationDate = newProduct.expirationDate;
+      productItem.productId = newProduct.product.id;
+
+      this._newProductItems.push(productItem);
+    }
+
   }
 
   mapModalProductItemEdit(newProductEdited: ProductItem){

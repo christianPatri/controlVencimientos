@@ -42,9 +42,10 @@ export class SuppliersService {
     return this.http.get<ProductSupplier[]>(this.suppliersUrl + path, this.requestOptions);
   }
 
-  // updateConfigurationItem(configurationItem: ConfigurationItem): Observable<ConfigurationItem> {
-  //   let path = 'UpdateConfigurationItem';
+  getSupplier(supplierId: number): Observable<ProductSupplier> {
+    //let path = "GetSupplier";
 
-  //   return this.http.post<ConfigurationItem>(this.configurationItemsUrl + path, configurationItem, this.requestOptions);
-  // }
+    return this.http.get<ProductSupplier>(`${this.suppliersUrl}${supplierId}`, this.requestOptions);
+  }
+
 }

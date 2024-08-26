@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+  <div class="form-group">
+    <label for="file">Seleccionar archivo Excel</label>
+    <input type="file" id="file" (change)="onFileChange($event)" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Subir</button>
+</form>
+
+
+
+<form (ngSubmit)="onSubmitProducts()" #uploadForm2="ngForm">
+  <div class="form-group">
+    <label for="file">Seleccionar archivo Excel Productos</label>
+    <input type="file" id="file" (change)="onFileChangeProducts($event)" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!selectedFileProducts">Subir</button>
+</form>

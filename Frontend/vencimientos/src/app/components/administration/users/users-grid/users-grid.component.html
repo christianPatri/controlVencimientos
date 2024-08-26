@@ -22,6 +22,7 @@
             <th>Apellido</th>
             <th>Nombre de Usuario</th>
             <th>Fecha de Ingreso</th>
+            <th>Rol</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -40,10 +41,13 @@
               <span>{{ user.createdDate | date:'dd-MM-yyyy'}}</span>
             </td>
             <td>
+              <span> {{ getUserRoleByRoleId(user.role) }} </span>
+            </td>
+            <td>
               <button type="button" class="btn btn-success rounded-button grid-button" (click)="editUser(i)">
                 <i class="bi bi-pencil bi-md"></i> Editar
               </button>
-              <button type="button" class="btn btn-success rounded-button grid-button" (click)="deleteUser(i)">
+              <button type="button" class="btn btn-success rounded-button grid-button" (click)="openDeleteUserModal(i)">
                 <i class="bi bi-pencil bi-md"></i> Eliminar
               </button>
             </td>
@@ -64,6 +68,16 @@
           [isEditing]="true"
           [userToEdit]="userToEdit">
       </app-users-modal>
+
+      <div>
+        <app-generic-modal #submitModal
+          (submittedButton)="handleDeleteUserModalEvent($event)"
+          [modalTitle]="_submitModalTitle"
+          [isDeletingUser]="true"
+          [userDataToShow]="userToDelete"
+          >
+        </app-generic-modal>
+      </div>
 
       <div class="row alerts">
         <div class="d-flex justify-content-center animated fadeIn fast">

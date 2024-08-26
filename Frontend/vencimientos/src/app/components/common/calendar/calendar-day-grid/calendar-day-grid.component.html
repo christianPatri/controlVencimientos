@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row list-home">
+    <div class="vehicleSection">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <button (click)="goBack()" class="btn btn-success btn-excell">
+              <i class="bi bi-chevron-left bi-md"></i> Volver
+            </button>
+            <h4 class="display-list-home m-0 text-center flex-grow-1">Vencimientos</h4>
+            <button (click)="exportToExcel()" class="btn btn-success btn-excell" [disabled]="!_exportEnable">
+              Exportar
+            </button>
+          </div>
+          <hr>
+        </div>
+
+      </div>
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+          <thead class="thead-dark">
+            <tr>
+              <th>Producto</th>
+              <th>Proveedor</th>
+              <th>Vencimiento</th>
+              <th>Cantidad</th>
+              <th>Revisado</th>
+              <th>Fecha Revision</th>
+              <th>Revisado por</th>
+              <th>Vencidos</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let productItem of productItems | paginate: { itemsPerPage: _itemsPerPage, currentPage: _page, totalItems: productItems.length}; let i = index">
+
+              <td><span>{{ productItem.product.name }}</span></td>
+              <!-- <td><span>{{ productItem.supplier }}</span></td> -->
+              <td><span>Proveedor</span></td>
+
+              <td><span>{{ productItem.expirationDate | date:'dd-MM-yyyy' }}</span></td>
+              <td><span>{{ productItem.amount }}</span></td>
+
+              <td>
+                <i *ngIf="productItem.status != ProductItemStatus.Checked" class="bi bi-x-circle-fill text-danger"></i>
+                <i *ngIf="productItem.status == ProductItemStatus.Checked" class="bi bi-check-circle-fill text-success"></i>
+              </td>
+
+              <td *ngIf="productItem.status == ProductItemStatus.Checked">
+                <span>{{ productItem.checkedDate | date:'dd-MM-yyyy' }}</span>
+              </td>
+              <td *ngIf="productItem.status != ProductItemStatus.Checked">
+                <span>-</span>
+              </td>
+
+              <td *ngIf="productItem.status == ProductItemStatus.Checked">
+                <span>{{ productItem.checkedBy?.username }}</span>
+              </td>
+              <td *ngIf="productItem.status != ProductItemStatus.Checked">
+                <span>-</span>
+              </td>
+
+              <td *ngIf="productItem.status == ProductItemStatus.Checked">
+                <span>{{ productItem.amountExpired }}</span>
+              </td>
+              <td *ngIf="productItem.status != ProductItemStatus.Checked">
+                <span>-</span>
+              </td>
+
+
+              <td *ngIf="productItem.status != ProductItemStatus.Checked">
+                <button type="button" class="btn btn-success rounded-button grid-button" (click)="openCheckExpirationModal(productItem)">
+                  <i class="bi bi-receipt bi-md"></i> Revision
+                </button>
+              </td>
+              <td *ngIf="productItem.status == ProductItemStatus.Checked">
+                <span>-</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="ngx-pagination">
+          <pagination-controls
+            (pageChange)="_page = $event"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+          >
+          </pagination-controls>
+        </div>
+
+        <div>
+          <app-product-items-modal #productItemCheckModal
+              (productItemCheckedModal)="handleCheckProductItem($event)"
+              [productItemToCheck]="_selectedToCheck"
+              [isCheckingProductItem]="_isCheckingProductItem">
+          </app-product-items-modal>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

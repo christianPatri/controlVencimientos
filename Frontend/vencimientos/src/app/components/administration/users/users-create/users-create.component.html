@@ -30,6 +30,16 @@
                       <label for="password" class="input-label">Password: </label>
                       <input type="text" formControlName="password" class="form-control form-input-text">
                     </div>
+
+                    <div class="form-group col form-custom-col">
+                      <label class="labelDropDown input-label" for="roleDropdown">Rol: </label>
+                      <select class="selectDropDown" id="roleDropdown" formControlName="role" class="form-control form-input-drop">
+                        <option *ngFor="let role of userRoles" [value]="role.id">
+                          {{ role.name }}
+                        </option>
+                      </select>
+                    </div>
+
                   </div>
 
                   <div class="submit-button">

@@ -47,6 +47,13 @@
   height: 24px;
 }
 
+.form-input-drop {
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+  padding-top: 2px !important;
+
+}
 .form-custom-col {
   margin-top: 5px;
 }

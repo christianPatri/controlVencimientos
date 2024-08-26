@@ -1,46 +1,55 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CalendarService } from '../../../../services/calendar/calendar.service';
+import { CalendarIcons } from '../../../../models/calendar/calendarIcons';
+import { PageTitleComponent } from '../../pagestitles/page-title/page-title.component';
 
 interface Day {
   date: number | null;
   month: number;
   year: number;
   icons: { color: string }[];
+  isToday?: boolean; // Add this property
 }
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule, Tooltip],
+  imports: [CommonModule, TooltipModule, PageTitleComponent ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent implements OnInit {
+  _pageTitle: string = "Calendario de Vencimientos";
   weeks: Day[][] = [];
   currentDate: Date = new Date();
   currentMonthName!: string;
   currentYear!: number;
   weekDays: string[] = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private calendarService: CalendarService
+  ) {}
 
   ngOnInit() {
     this.updateCalendar();
   }
 
   ngAfterViewInit() {
-    this.initializeTooltips();
   }
 
   updateCalendar() {
-    this.currentMonthName = this.currentDate.toLocaleString('default', { month: 'long' });
+    this.currentMonthName = this.currentDate.toLocaleString('es', { month: 'long' });
     this.currentYear = this.currentDate.getFullYear();
     this.generateCalendar();
   }
 
   generateCalendar() {
     this.weeks = [];
+    const today = new Date();
     const startOfMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
     const endOfMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
 
@@ -55,11 +64,16 @@ export class CalendarComponent implements OnInit {
     while (currentDay <= endOfMonth || currentDay.getDay() !== 0) {
       const week: Day[] = [];
       for (let i = 0; i < 7; i++) {
+        const isToday = currentDay.getDate() === today.getDate() &&
+                        currentDay.getMonth() === today.getMonth() &&
+                        currentDay.getFullYear() === today.getFullYear();
+
         week.push({
           date: currentDay.getMonth() === this.currentDate.getMonth() ? currentDay.getDate() : null,
           month: currentDay.getMonth(),
           year: currentDay.getFullYear(),
-          icons: this.getIconsForDay(currentDay)
+          icons: this.getIconsForDay(currentDay),
+          isToday: isToday
         });
         currentDay.setDate(currentDay.getDate() + 1);
       }
@@ -68,17 +82,32 @@ export class CalendarComponent implements OnInit {
   }
 
   getIconsForDay(date: Date): { color: string }[] {
-    const icons = [];
-    if (date.getDate() % 3 === 0) icons.push({ color: 'red' });
-    if (date.getDate() % 5 === 0) icons.push({ color: 'yellow' });
-    if (date.getDate() % 7 === 0) icons.push({ color: 'green' });
+    const icons: { color: string; }[] = [];
+
+    this.calendarService.GetDayIcons(date).subscribe(
+      (dayIcons: CalendarIcons) => {
+
+        if (dayIcons.hasDayExpirations) icons.push({ color: 'red' });
+        if (dayIcons.hasNextDayExpirations) icons.push({ color: 'yellow' });
+        if (dayIcons.hasNext2DayExpirations) icons.push({ color: 'blue' });
+        if (dayIcons.hasPreviousExpirationsNotChecked) icons.push({ color: 'black' });
+
+        if (!dayIcons.hasDayExpirations)icons.push({ color: 'green' });
+
+        return icons;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
     return icons;
   }
 
   navigateToDay(day: Day) {
     if (day.date !== null) {
-      const selectedDate = new Date(day.year, day.month, day.date);
-      this.router.navigate(['/day', selectedDate.toISOString()]);
+      let dayMonth = day.month + 1;
+      this.router.navigate([`/calendar/${day.year}/${dayMonth}/${day.date}`]);
     }
   }
 
@@ -94,15 +123,17 @@ export class CalendarComponent implements OnInit {
 
   getTooltipText(day: Day): string {
     if (day.date !== null) {
-      return `Información adicional para el día ${day.date}`;
+
+      let text='';
+      day.icons.forEach(i => {
+        if (i.color == 'green') text += 'No hay vencimientos para el dia ' + day.date;
+        if (i.color == 'red') text += 'Hay vencimientos para el dia ' + day.date;
+        if (i.color == 'black') text += 'Hay vencimientos previos al dia ' + day.date;
+
+      })
+
+      return text;
     }
     return '';
-  }
-
-  initializeTooltips() {
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new Tooltip(tooltipTriggerEl);
-    });
   }
 }

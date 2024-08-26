@@ -9,6 +9,7 @@ import { MonthlyVehicleDeleteComponent } from '../../../administration/monthlyVe
 import { ProductSupplier } from '../../../../models/suppliers/productSupplier';
 import { Product } from '../../../../models/products/product';
 import { ProductItem } from '../../../../models/productItems/productItem';
+import { User } from '../../../../models/users/user';
 
 @Component({
   selector: 'app-generic-modal',
@@ -46,6 +47,10 @@ export class GenericModalComponent implements OnInit{
 
   @Input() isCreatingProductItems!: boolean;
   @Input() productItemsDataToShow!: ProductItem[];
+
+  // Users
+  @Input() isDeletingUser!: boolean;
+  @Input() userDataToShow!: User;
 
   //Bills
 

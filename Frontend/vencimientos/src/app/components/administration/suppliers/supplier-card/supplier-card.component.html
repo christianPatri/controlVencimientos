@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="row">
+        <h3 class="display-list-home" >Datos Proveedor</h3>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <span>Nombre: </span>
+                <span>{{supplier.name}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Descripcion: </span>
+                <span>{{supplier.description}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Rut: </span>
+                <span>{{supplier.rut}}</span>
+              </div>
+
+            </div>
+
+            <br>
+
+            <!-- id!: number;
+            name!: string;
+            rut!: string;
+            description!: string;
+            phoneNumber!: string;
+            secondaryPhoneNumber!: string;
+            contactName!: string;
+            seller!: string;
+            visitDays!: number[];
+            interval!: number; -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <span>Contacto: </span>
+                <span>{{supplier.contactName}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Telefono: </span>
+                <span>{{supplier.phoneNumber}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Telefono 2: </span>
+                <span>{{supplier.secondaryPhoneNumber}}</span>
+              </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-md-4">
+                <span>Vendedor: </span>
+                <span>{{supplier.seller}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Dia visitas: </span>
+                <span>{{supplier.visitDays}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span>Intervalo: </span>
+                <span>{{supplier.interval}}</span>
+              </div>
+
+            </div>
+
+            <br>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

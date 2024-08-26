@@ -137,3 +137,27 @@ tr:hover {
   font-weight: bold;
   margin-right: 8px;
 }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Espacio opcional entre la barra de búsqueda y la tabla */
+}
+
+.search-bar input[type="text"] {
+  margin-right: 10px; /* Espacio entre los campos de búsqueda */
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #198754;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 20px !important;
+}
+
+.search-bar button:hover {
+  background-color: #00b321;
+}

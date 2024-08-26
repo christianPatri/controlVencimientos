@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
           this.userSuccessMessage = "Usuario Creado";
           this.getUsers()
       }, (err) => {
-        this._isLoading = false;
+        this._isLoading = true;
         this.triggerErrorUpdate(err.error);
       });
     }

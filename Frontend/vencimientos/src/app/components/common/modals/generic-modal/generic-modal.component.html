@@ -245,6 +245,26 @@
           Aceptar
         </button>
       </div>
+
+      <div *ngIf="isDeletingUser && userDataToShow != null" class="container mt-4">
+        <div class="row">
+          <span>Se procedera a eliminar al usuario <strong>Nombre: </strong> {{userDataToShow.name}}, <strong>Apellido: </strong> {{ userDataToShow.lastname }}
+            con <strong>Usuario:</strong> {{ userDataToShow.username }}
+          </span>
+
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <div class="modal-footer" *ngIf="isDeletingUser" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Eliminar
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <!-- <div class="row">
+        <h3 class="display-list-home">Producto</h3>
+      </div> -->
+
+      <div class="container">
+        <div class="row formulary">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div class="w-70">
+
+              <form [formGroup]="myForm" (ngSubmit)="checkProductItem()" class="form-modal">
+                <div class="form-row">
+
+                  <div class="form-group col form-custom-col">
+                    <label for="name" class="input-label">Producto</label>
+                    <input type="text" formControlName="name" class="form-control form-input-text" [(ngModel)]="productItem.product.name" readonly>
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="expirationDate" class="input-label">Vencimiento</label>
+                    <input type="text" formControlName="expirationDate" class="form-control form-input-text"
+                     readonly>
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="amountExpired" class="input-label">Vencidos</label>
+                    <input type="number" formControlName="amountExpired" class="form-control form-input-text">
+                  </div>
+
+                  <div class="submit-button">
+                    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Guardar</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

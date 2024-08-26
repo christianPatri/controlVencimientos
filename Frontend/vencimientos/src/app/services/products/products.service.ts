@@ -60,6 +60,14 @@ export class ProductsService {
     return this.http.get<Product[]>(this.productsUrl + path + "/" + codeBar, this.requestOptions);
   }
 
+
+
+  getSupplierProducts(supplierId: number): Observable<Product[]> {
+    let path = "GetSupplierProducts";
+
+    return this.http.get<Product[]>(`${this.productsUrl + path + "/"}${supplierId}`, this.requestOptions);
+  }
+
   // updateConfigurationItem(configurationItem: ConfigurationItem): Observable<ConfigurationItem> {
   //   let path = 'UpdateConfigurationItem';
 

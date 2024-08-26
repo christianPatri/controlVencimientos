@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <div *ngIf="!_isLoading">
+          <app-calendar-day-grid
+            [productItems] ="_productItems"
+            [daySelected]="_daySelected"
+            (checkProductItemExpiration)="handleCheckProductItem($event)"
+            [errorMessage]="_errorMessage"
+            [successMessage]="_successMessage"
+            >
+          </app-calendar-day-grid>
+
+          <!-- <div>
+            <app-product-items-modal #productItemCheckModal
+                (productItemCheckedModal)="handleCheckProductItem($event)"
+                [productItemToCheck]="_selectedToCheck"
+                [isCheckingProductItem]="_isCheckingProductItem">
+            </app-product-items-modal>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

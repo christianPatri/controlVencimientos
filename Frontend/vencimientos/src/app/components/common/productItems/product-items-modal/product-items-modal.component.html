@@ -1,6 +1,6 @@
 <div class="modal" [ngClass]="{ 'open': isOpen }">
   <div class="modal-overlay"></div>
-  <div class="modal-container" *ngIf="!isEditing">
+  <div class="modal-container" *ngIf="!isEditing && !isCheckingProductItem">
     <div class="modal-header">
       <h5 class="modal-title">Ingreso de productos</h5>
       <button class="close-button" (click)="closeModal()">X</button>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="modal-container" *ngIf="isEditing">
+  <div class="modal-container" *ngIf="isEditing && !isCheckingProductItem">
     <div class="modal-header">
       <h5 class="modal-title">Editar Producto</h5>
       <button class="close-button" (click)="closeModal()">X</button>
@@ -24,6 +24,20 @@
           [productItemToEdit]="productItemToEdit"
           >
       </app-product-items-edit>
+    </div>
+  </div>
+
+  <div class="modal-container" *ngIf="isCheckingProductItem">
+    <div class="modal-header">
+      <h5 class="modal-title">Revision de Producto</h5>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-content">
+      <app-product-item-check #productItemCheck
+          (productItemChecked)="handleProductItemChecked($event)"
+          [productItemToCheck]="productItemToCheck"
+          >
+      </app-product-item-check>
     </div>
   </div>
 </div>
