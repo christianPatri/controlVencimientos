@@ -2,3 +2,22 @@
 /* @import "~bootstrap/dist/css/bootstrap.min.css"; */
 
 
+.col-md-2{
+  padding-right: 0px !important;
+}
+
+/* sidebar.component.css */
+.sidebar {
+
+  padding-right: 0px !important;
+}
+
+
+.col-mod-10 {
+  padding-left: 0px !important;
+}
+
+.navBar {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}

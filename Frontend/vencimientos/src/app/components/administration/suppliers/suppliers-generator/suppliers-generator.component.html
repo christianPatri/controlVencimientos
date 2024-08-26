@@ -1,0 +1,239 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="clientSection">
+        <div class="col-md-12">
+          <div class="col-md-12">
+            <div class="row">
+              <h3 class="display-list-home" >1 - Datos Proveedor</h3>
+            </div>
+          </div>
+
+          <div *ngIf="_showSupplierModal">
+            <button type="button" class="btn btn-success rounded-button" (click)="openSuppliersModal()">
+              <i class="bi bi-plus bi-lg"></i> Crear Datos Proveedor
+            </button>
+          </div>
+
+          <app-suppliers-modal #suppliersModal
+              (supplierCreatedModal)="handleCreateSupplier($event)">
+          </app-suppliers-modal>
+
+          <app-suppliers-modal #suppliersEditModal
+              (supplierEditedModal)="handleEditSupplier($event)"
+              [isEditing]="_isEditing"
+              [supplierToEdit]="_supplierToEdit">
+          </app-suppliers-modal>
+
+          <div class="col-md-12">
+            <div *ngIf="_supplierLoaded">
+              <table class="table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>RUT</th>
+                    <th>Description</th>
+                    <th>Telefono</th>
+                    <th>Telefono 2</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span>{{ _newSupplier.name }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newSupplier.rut }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newSupplier.description }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newSupplier.phoneNumber }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newSupplier.secondaryPhoneNumber }}</span>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="editSupplier()" [disabled]="_disableAllButtons">
+                        <i class="bi bi-pencil bi-md"></i> Editar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row alerts">
+            <div class="d-flex justify-content-center animated fadeIn fast">
+              <div *ngIf="showingCreateSupplierStep1Alert" style="padding-top: 20px">
+                <div class="alert alert-danger col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+
+              <div *ngIf="showingCreateSupplierConfirmationPanel" style="padding-top: 20px">
+                <div class="alert alert-success col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="vehicleSection" *ngIf="_supplierLoaded">
+
+        <div class="productsWantsSection" *ngIf="!_wantToCreateProducts">
+          <div class="col-md-12">
+            <div>
+              <button type="button" class="btn btn-success rounded-button" (click)="wantToCreateProducts()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> ?Agregar Productos Al Proveedor ?
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="_wantToCreateProducts">
+          <div class="col-md-12" >
+            <div class="row">
+              <h3 class="display-list-home" >2 - Productos del proveedor</h3>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div *ngIf="_supplierLoaded && _newSupplierProducts.length > 0 ">
+              <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Codigo de Barras</th>
+                    <th>Descripcion</th>
+                    <th>Dias Previos Notificacion</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let product of _newSupplierProducts; let i = index">
+                    <td>
+                      <span>{{ product.name }}</span>
+                    </td>
+                    <td>
+                      <span>{{ product.barCode }}</span>
+                    </td>
+                    <td>
+                      <span>{{ product.description }}</span>
+                    </td>
+                    <td>
+                      <span>{{ product.amountDaysPreviousNotification }}</span>
+                    </td>
+                    <td>
+
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="editProduct(i)" [disabled]="_disableAllButtons">
+                        <i class="bi bi-pencil bi-md"></i> Editar
+                      </button>
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="removeProduct(i)" [disabled]="_disableAllButtons">
+                        <i class="bi bi-trash bi-md"></i> Quitar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div>
+              <button type="button" class="btn btn-success rounded-button" (click)="openProductsModal()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Agregar Producto
+              </button>
+            </div>
+
+            <app-products-modal #productsModal
+                (productCreatedModal)="handleCreateProduct($event)">
+            </app-products-modal>
+
+            <app-products-modal #productsEditModal
+                (productEditedModal)="handleEditProduct($event)"
+                [isEditing]="_isEditingProduct"
+                [productToEdit]="_productToEdit">
+            </app-products-modal>
+
+            <div class="row alerts">
+              <div class="d-flex justify-content-center animated fadeIn fast">
+                <div *ngIf="showingCreateProductAlert" style="padding-top: 20px">
+                  <div class="alert alert-danger col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+
+                <div *ngIf="showingCreateProductConfirmationPanel" style="padding-top: 20px">
+                  <div class="alert alert-success col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="confirmSection" *ngIf="_productLoaded || (!_wantToCreateProducts && _supplierLoaded)">
+        <div class="col-md-12" >
+          <div class="row">
+            <h3 class="display-list-home" >3 - Confirmar proveedor</h3>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <button type="button" class="btn btn-success rounded-button" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+              Crear Proveedor
+            </button>
+          </div>
+
+          <app-generic-modal #submitModal
+              (submittedButton)="handleSubmitModalEvent($event)"
+              [modalTitle]="_submitModalTitle"
+              [isCreatingSupplier]="_submitedModalIsCreating"
+              [supplierDataToShow]="_newSupplier"
+              [productsDataToShow]="_newSupplierProducts"
+              >
+          </app-generic-modal>
+
+          <div class="row alerts">
+            <div class="d-flex justify-content-center animated fadeIn fast">
+              <div *ngIf="showingCreateSupplierAlert" style="padding-top: 20px">
+                <div class="alert alert-danger col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+
+              <div *ngIf="showingCreateSupplierConfirmationPanel" style="padding-top: 20px">
+                <div class="alert alert-success col-form-label-sm" role="alert">
+                    {{ messageError }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

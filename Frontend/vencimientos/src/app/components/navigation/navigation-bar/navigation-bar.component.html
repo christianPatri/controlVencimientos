@@ -15,14 +15,16 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink] ="['home']">Inicio </a>
         </li>
+
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['monthlyClients']">Parking Mensual</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['hourlyClients']">Parking por Hora</a>
+          <a class="nav-link" [routerLink]="['productItems/new']">Ingresar productos</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['nightlyClients']">Parking por noche</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['monthlyClients']">Parking Mensual</a>
         </li>
       </ul>
 
@@ -32,11 +34,13 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngClass="{show: showDropdownAdminUser, disabled: !showDropdownAdminUser}" #dropdownUserMenu>
                 <a class="dropdown-item" [routerLink]="['users']">Usuarios</a>
                 <a class="dropdown-item" [routerLink]="['administration/monthlyClients']">Mensualidades</a>
+                <a class="dropdown-item" [routerLink]="['administration/suppliers']">Proveedores</a>
+                <a class="dropdown-item" [routerLink]="['administration/products']">Productos</a>
                 <a class="dropdown-item" [routerLink]="['administration/settings']">Configuraciones</a>
             </div>
         </li>
 
-        <li class="nav-item dropdown ml-auto" >
+        <!-- <li class="nav-item dropdown ml-auto" >
           <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" (click)="toggleDropdownReports()">Reportes</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngClass="{show: showDropDownReports, disabled: !showDropDownReports}" #dropdownReportsMenu>
               <a class="dropdown-item" [routerLink]="['administration/monthlyDebtorsReport']">Reporte Deudores Mensuales</a>
@@ -44,7 +48,7 @@
               <a class="dropdown-item" [routerLink]="['administration/hourlyReport']">Reporte Parking Por hora</a>
               <a class="dropdown-item" [routerLink]="['administration/nightlyReport']">Reporte Parking Nocturno</a>
           </div>
-      </li>
+        </li> -->
 
         <!-- <li class="nav-item active">
           <a class="nav-link" [routerLink] ="['administration/monthlyClients']"> Gestion mensualidades </a>

@@ -6,7 +6,7 @@
       <button class="close-button" (click)="closeModal()">X</button>
     </div>
     <div class="modal-content">
-      <div *ngIf="isCreatingClient" class="container mt-4">
+      <!-- <div *ngIf="isCreatingClient" class="container mt-4">
         <div class="row">
           <div class="col-12 mb-3">
             <h5>Cliente</h5>
@@ -90,23 +90,161 @@
         <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
           Eliminar
         </button>
+      </div> -->
+
+      <div *ngIf="isCreatingSupplier" class="container mt-4">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <h5>Proveedor</h5>
+          </div>
+          <div class="col-12 mb-3">
+            <span><strong>Nombre:</strong> {{ supplierDataToShow.name }}</span>
+          </div>
+          <div class="col-12 mb-3">
+            <span><strong>Rut:</strong> {{ supplierDataToShow.rut }}</span>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="productsDataToShow.length > 0">
+          <div class="col-12 mb-3">
+            <h5>Productos</h5>
+          </div>
+
+          <div >
+            <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let product of productsDataToShow; let i = index">
+                  <td>
+                    <span>{{ product.name }}</span>
+                  </td>
+                  <td>
+                    <span>{{ product.description }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div *ngIf="isDeletingMonthlyClient && monthlyClientToDelete != null" class="container mt-4">
-        <app-monthly-client-delete [monthlyClient]="monthlyClientToDelete">
-        </app-monthly-client-delete>
-      </div>
-
-      <div class="modal-footer" *ngIf="isDeletingMonthlyClient" >
+      <div class="modal-footer" *ngIf="isCreatingSupplier" >
         <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
           Cancelar
         </button>
         <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
-          Eliminar
+          Aceptar
+        </button>
+      </div>
+
+      <div *ngIf="isCreatingProducts" class="container mt-4">
+        <div class="row" *ngIf="productsDataToShow.length > 0">
+          <div class="col-12 mb-3">
+            <h5>Productos</h5>
+          </div>
+
+          <div >
+            <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Proveedor</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let product of productsDataToShow; let i = index">
+                  <td>
+                    <span>{{ product.name }}</span>
+                  </td>
+                  <td>
+                    <span>{{ product.description }}</span>
+                  </td>
+                  <td>
+                    <span>{{ product.supplier.name }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer" *ngIf="isCreatingProducts" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Aceptar
+        </button>
+      </div>
+
+      <div *ngIf="isCreatingProductItems" class="container mt-4">
+        <div class="row" *ngIf="productItemsDataToShow.length > 0">
+          <div class="col-12 mb-3">
+            <h5>Productos</h5>
+          </div>
+
+          <div >
+            <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Proveedor</th>
+                  <th>Cantidad</th>
+                  <th>Vencimiento</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let productItem of productItemsDataToShow; let i = index">
+                  <td>
+                    <span>{{ productItem.product.name }}</span>
+                  </td>
+                  <td>
+                    <span>{{ productItem.product.description }}</span>
+                  </td>
+                  <td>
+                    <span>{{ productItem.product.description }}</span>
+                  </td>
+                  <td>
+                    <span>{{ productItem.amount }}</span>
+                  </td>
+                  <td>
+                    <span>{{ productItem.expirationDate | date:'dd-MM-yyyy'}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer" *ngIf="isCreatingProductItems" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Aceptar
         </button>
       </div>
     </div>
-
-
   </div>
 </div>

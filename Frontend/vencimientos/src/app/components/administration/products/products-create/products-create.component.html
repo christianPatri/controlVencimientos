@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="row">
+        <h3 class="display-list-home">Producto</h3>
+      </div>
+
+      <div class="container">
+        <div class="row formulary">
+          <div class="d-flex justify-content-center animated fadeIn fast">
+            <div class="w-70">
+              <form [formGroup]="myForm" (ngSubmit)="createProduct()" class="form-modal">
+                <div class="form-row">
+                  <div class="form-group col form-custom-col">
+                    <label for="name" class="input-label">Nombre</label>
+                    <input type="text" formControlName="name" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="barCode" class="input-label">Codigo de Barras</label>
+                    <input type="text" formControlName="barCode" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="description" class="input-label">Descripcion</label>
+                    <input type="text" formControlName="description" class="form-control form-input-text">
+                  </div>
+
+                  <div class="form-group col form-custom-col">
+                    <label for="amountDaysPreviousNotification" class="input-label">Dias previos para notificacion</label>
+                    <input type="number" formControlName="amountDaysPreviousNotification" class="form-control form-input-text">
+                  </div>
+
+                  <div class="submit-button">
+                    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Generar</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

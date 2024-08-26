@@ -6,6 +6,9 @@ import { MonthlyVehicle } from '../../../../models/vehicles/monthlyVehicle';
 import { BillsPaymentComponent } from '../../../administration/bills/bills-payment/bills-payment.component';
 import { MonthlyClientDeleteComponent } from '../../../administration/monthlyClients/monthly-client-delete/monthly-client-delete.component';
 import { MonthlyVehicleDeleteComponent } from '../../../administration/monthlyVehicles/monthly-vehicle-delete/monthly-vehicle-delete.component';
+import { ProductSupplier } from '../../../../models/suppliers/productSupplier';
+import { Product } from '../../../../models/products/product';
+import { ProductItem } from '../../../../models/productItems/productItem';
 
 @Component({
   selector: 'app-generic-modal',
@@ -29,6 +32,21 @@ export class GenericModalComponent implements OnInit{
   @Input() clientDataToShow!: MonthlyClient;
   @Input() vehicleDataToShow!: MonthlyVehicle[];
 
+  //Suppliers Create
+
+  @Input() isCreatingSupplier!: boolean;
+  @Input() supplierDataToShow!: ProductSupplier;
+  @Input() productsDataToShow!: Product[];
+
+  //Products Create
+
+  @Input() isCreatingProducts!: boolean;
+
+  //Product Items Create
+
+  @Input() isCreatingProductItems!: boolean;
+  @Input() productItemsDataToShow!: ProductItem[];
+
   //Bills
 
   @Input() isPayingBill!: boolean;
@@ -43,6 +61,16 @@ export class GenericModalComponent implements OnInit{
 
   @Input() isDeletingMonthlyClient!: boolean;
   @Input() monthlyClientToDelete!: MonthlyClient;
+
+  //Delete Supplier
+
+  @Input() isDeletingSupplier!: boolean;
+  @Input() supplierToDelete!: ProductSupplier;
+
+  //Delete Supplier
+
+  @Input() isDeletingProduct!: boolean;
+  @Input() productToDelete!: Product;
 
 
   constructor() { }

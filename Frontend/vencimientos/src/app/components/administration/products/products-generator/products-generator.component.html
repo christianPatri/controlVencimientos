@@ -1,0 +1,218 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+
+      <div class="overlay" *ngIf="_isLoading"></div>
+      <app-spinner *ngIf="_isLoading"></app-spinner>
+
+      <div class="clientSection">
+        <div class="col-md-12">
+          <div class="col-md-12">
+            <div class="row">
+              <h3 class="display-list-home">Productos a Agregar</h3>
+              <hr>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div>
+              <table class="table table-bordered table-striped table-hover table-sm table-responsive-md">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Codigo de Barras</th>
+                    <th>Descripcion</th>
+                    <th>Dias Previos de notificacion</th>
+                    <th>Proveedor</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let product of _newProducts; let i = index">
+                    <tr >
+                      <td>
+                        <span>{{ product.name }}</span>
+                      </td>
+                      <td>
+                        <span>{{ product.barCode }}</span>
+                      </td>
+                      <td>
+                        <span>{{ product.description }}</span>
+                      </td>
+                      <td>
+                        <span>{{ product.amountDaysPreviousNotification }}</span>
+                      </td>
+                      <td>
+                        <span>{{ product.supplier.name }}</span>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success rounded-button grid-button" (click)="removeProductFromList(i)">
+                          <i class="bi bi-trash bi-md"></i> Quitar
+                        </button>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div *ngIf="_newProducts.length !== 0">
+              <button type="button" class="btn btn-success rounded-button"  *ngIf="_newProducts.length == 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Crear Producto
+              </button>
+
+              <button type="button" class="btn btn-success rounded-button"  *ngIf="_newProducts.length > 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Crear Productos
+              </button>
+            </div>
+
+            <app-generic-modal #submitModal
+              (submittedButton)="handleSubmitModalEvent($event)"
+              [modalTitle]="_submitModalTitle"
+              [isCreatingProducts]="_submitedModalIsCreating"
+              [productsDataToShow]="_newProducts"
+              >
+          </app-generic-modal>
+
+            <div class="row alerts">
+              <div class="d-flex justify-content-center animated fadeIn fast">
+                <div *ngIf="showingCreateProductStep1Alert" style="padding-top: 20px">
+                  <div class="alert alert-danger col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+
+                <div *ngIf="showingCreateProductConfirmationPanel" style="padding-top: 20px">
+                  <div class="alert alert-success col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="vehicleSection">
+        <div>
+          <div class="col-md-12" >
+            <div class="row">
+              <h3 class="display-list-home">Generar Nuevo Producto</h3>
+            </div>
+          </div>
+
+          <div *ngIf="_showProductsModal">
+            <button type="button" class="btn btn-success rounded-button" (click)="openProductsModal()" [disabled]="_disableAllButtons">
+              <i class="bi bi-plus bi-lg"></i> Generar Producto
+            </button>
+          </div>
+
+          <app-products-modal #productsModal
+                (productCreatedModal)="handleCreateProduct($event)">
+          </app-products-modal>
+
+          <app-products-modal #productsEditModal
+                (productEditedModal)="handleEditProduct($event)"
+                [isEditing]="_isEditingProduct"
+                [productToEdit]="_productToEdit">
+          </app-products-modal>
+
+          <div class="col-md-12">
+            <div *ngIf="_productLoaded && _newProduct">
+              <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Codigo de Barras</th>
+                    <th>Descripcion</th>
+                    <th>Dias Previos Notificacion</th>
+                    <th>Proveedor</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <span>{{ _newProduct.name }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newProduct.barCode }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newProduct.description }}</span>
+                    </td>
+                    <td>
+                      <span>{{ _newProduct.amountDaysPreviousNotification }}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="_newProduct.supplier.name !== undefined">{{ _newProduct.supplier.name }}</span>
+                      <span *ngIf="_newProduct.supplier.name == undefined">--</span>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="editProduct()" [disabled]="_disableAllButtons">
+                        <i class="bi bi-pencil bi-md"></i> Editar
+                      </button>
+                      <button type="button" class="btn btn-success rounded-button grid-button" (click)="cleanProduct()" [disabled]="_disableAllButtons">
+                        <i class="bi bi-trash bi-md"></i> Limpiar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+
+            <div *ngIf="!_productHasSupplier && _productLoaded && !_clickedAddSupplier">
+              <button type="button" class="btn btn-success rounded-button" (click)="showAddSupplierSection()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Agregar Proveedor
+              </button>
+            </div>
+
+            <div *ngIf="_showAddSupplierSection">
+              <label class="labelDropDown" for="dropdown">Seleccione un proveedor: </label>
+              <select class="selectDropDown" id="dropdown" [(ngModel)]="_selectedSupplierId" (change)="onSupplierChange($event)">
+                <option *ngFor="let supplier of _suppliers" [value]="supplier.id">
+                  {{ supplier.name }}
+                </option>
+              </select>
+            </div>
+
+            <div *ngIf="_productHasSupplier">
+              <button type="button" class="btn btn-success rounded-button" (click)="addProduct()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Agregar Producto a Listado
+              </button>
+            </div>
+
+            <div class="row alerts">
+              <div class="d-flex justify-content-center animated fadeIn fast">
+                <div *ngIf="showingCreateProductAlert" style="padding-top: 20px">
+                  <div class="alert alert-danger col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+
+                <div *ngIf="showingCreateProductConfirmationPanel" style="padding-top: 20px">
+                  <div class="alert alert-success col-form-label-sm" role="alert">
+                      {{ messageError }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
