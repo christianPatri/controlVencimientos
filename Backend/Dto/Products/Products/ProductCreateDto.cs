@@ -20,6 +20,8 @@ namespace Dto.Products.Products
 
         public int SupplierId { get; set; }
 
+        public string SupplierRut { get; set; }
+
         public ProductCreateDto() { }
     }
 }

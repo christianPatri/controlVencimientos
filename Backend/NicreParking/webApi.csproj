@@ -24,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
     <Folder Include="logs\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
 
 

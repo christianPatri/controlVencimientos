@@ -74,19 +74,19 @@ namespace webApi
                 endpoints.MapControllers();
             });
 
-            app.UseSwagger();
+            //app.UseSwagger();
 
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path.Value.StartsWith("/swagger"))
-                {
-                    context.Response.Redirect("/swagger/index.html");
-                }
-                else
-                {
-                    await next();
-                }
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    if (context.Request.Path.Value.StartsWith("/swagger"))
+            //    {
+            //        context.Response.Redirect("/swagger/index.html");
+            //    }
+            //    else
+            //    {
+            //        await next();
+            //    }
+            //});
 
             //app.UseSwagger(c =>
             //{

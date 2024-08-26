@@ -1,10 +1,13 @@
 ﻿
+using Domain.Enums;
 using Domain.Products;
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace DataAccess.Context
@@ -16,6 +19,8 @@ namespace DataAccess.Context
         public DbSet<Product> Products { get; set; }
 
         public DbSet<ProductItem> ProductItems { get; set; }
+        
+        public DbSet<User> Users { get; set; }
 
         public VencimientosContext(DbContextOptions options) : base(options) { }
 
@@ -34,20 +39,39 @@ namespace DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<HourlyClient>().HasKey(e => new { e.Ticket, e.Licenseplate });
+            modelBuilder.Entity<ProductSupplier>()
+            .HasKey(ps => ps.Id);
 
-            //modelBuilder.Entity<Ticket>().HasKey(e => e.Id);
+            modelBuilder.Entity<ProductSupplier>()
+                .Property(ps => ps.VisitDays)
+                .HasConversion(
+                    v => string.Join(',', v.Select(d => d.ToString()).ToArray()),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(d => Enum.Parse<SupplierVisitDay>(d)).ToList());
 
-            ////modelBuilder.Entity<Bill>().HasKey(b => b.BillNumber);
+            modelBuilder.Entity<ProductSupplier>()
+                .HasMany(ps => ps.Products)
+                .WithOne(p => p.Supplier)
+                .HasForeignKey(p => p.SupplierId);
 
-            //modelBuilder.Entity<BillNumber>().HasKey(e => e.Id);
+            modelBuilder.Entity<Product>()
+            .HasMany(p => p.ProductItems)
+            .WithOne(pi => pi.Product)
+            .HasForeignKey(pi => pi.ProductId);
 
-            // Configuración de la relación uno a uno entre Bill y MonthlyClient
-            //modelBuilder.Entity<Bill>()
-            //    .HasOne(b => b.MonthlyClient)
-            //    .WithMany(mc => mc.Bills)
-            //    .HasForeignKey(b => b.MonthlyClientId);
+            modelBuilder.Entity<ProductItem>()
+                .HasKey(pi => pi.Id);
 
+            modelBuilder.Entity<ProductItem>()
+                .Property(pi => pi.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (ProductItemStatus)Enum.Parse(typeof(ProductItemStatus), v));
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (UserRoles)Enum.Parse(typeof(UserRoles), v));
         }
     }
 }

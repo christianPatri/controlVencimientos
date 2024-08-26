@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Products;
+using BusinessLogic.Users;
 using Domain.Products;
 using Dto.Products.ProductItems;
 using IService.Products;
@@ -16,18 +17,21 @@ namespace Services.Products
         private readonly IMapper _mapper;
         private readonly ProductItemLogic _productItemLogic;
         private readonly ProductLogic _productLogic;
+        private readonly UserLogic _userLogic;
 
         public ProductItemService(
             ProductItemLogic productItemLogic,
             ProductLogic productLogic,
+            UserLogic userLogic,
             IMapper mapper) 
         {
             _productItemLogic = productItemLogic;
             _productLogic = productLogic;
+            _userLogic = userLogic;
             _mapper = mapper;
         }
 
-        public List<ProductItemDto> GenerateProductItems(ProductItemsCreateDto productItemsCreate)
+        public List<ProductItemDto> GenerateProductItems(ProductItemsGeneratorDto productItemsCreate)
         {
             //Para cada prdoucto, voy a generar los P.Items
 
@@ -54,6 +58,25 @@ namespace Services.Products
             var returnDto = _mapper.Map<ProductItemDto>(productItem);
 
             return returnDto;
+        }
+
+        public List<ProductItemDto> GetProductItemsForDateExpiration(DateTime expiration)
+        {
+            var productItems = _productItemLogic.GetProductItemsForDateExpiration(expiration);
+
+            //Si el dia es Today, tengo que traer los que estan expirados para atras
+
+            return _mapper.Map<List<ProductItemDto>>(productItems);
+        }
+
+        public ProductItemDto CheckProductItem(ProductItemCheckDto productItemCheck)
+        {
+            var productItem = _productItemLogic.GetProductById(productItemCheck.ProductItem.Id);
+            var user = _userLogic.GetUserByUsername(productItemCheck.User.Username);
+
+            productItem = _productItemLogic.CheckProductItem(productItem, user, productItemCheck);
+
+            return _mapper.Map<ProductItemDto>(productItem);
         }
 
 

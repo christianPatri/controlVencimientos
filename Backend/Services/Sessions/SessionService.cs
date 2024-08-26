@@ -27,13 +27,13 @@ namespace Services.Sessions
             return isCorrectToken;
         }
 
-        public Guid Login(UserLoginDto userLoginDto)
+        public UserDto Login(UserLoginDto userLoginDto)
         {
             _sessionLogic.ValidateLogin(userLoginDto);
             var user = _sessionLogic.SearchUser(userLoginDto);
             _sessionLogic.ValidateExistingUser(user);
 
-            return user.Token;
+            return _mapper.Map<UserDto>(user);
         }
     }
 }

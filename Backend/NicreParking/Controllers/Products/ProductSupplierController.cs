@@ -42,6 +42,21 @@ namespace webApi.Controllers.Products
         //    }
         //}
 
+        [HttpGet("ActiveSuppliers")]
+        public IActionResult GetActiveSuppliers()
+        {
+            try
+            {
+                var productSuppliers = _productSupplierService.GetActiveSuppliers();
+
+                return Ok(productSuppliers);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
         [HttpPost("Create")]
         public IActionResult CreateSupplier([FromBody] ProductSupplierCreateDto supplier)
         {
@@ -64,6 +79,21 @@ namespace webApi.Controllers.Products
             {
                 var result = _productSupplierService.DeleteSupplier(supplier);
                 return Ok(result);
+            }
+            catch (ValidationException ve)
+            {
+                return BadRequest(ve.Message);
+            }
+        }
+
+        [HttpGet("{supplierId}")]
+        public IActionResult GetSupplier(int supplierId)
+        {
+            try
+            {
+                var productSupplier = _productSupplierService.GetSupplierById(supplierId);
+
+                return Ok(productSupplier);
             }
             catch (ValidationException ve)
             {

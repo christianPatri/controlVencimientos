@@ -9,8 +9,12 @@ namespace IService.Products
 {
     public interface IProductItemService
     {
-        List<ProductItemDto> GenerateProductItems(ProductItemsCreateDto productItemsCreate);
+        List<ProductItemDto> GenerateProductItems(ProductItemsGeneratorDto productItemsCreate);
 
         ProductItemDto GenerateProductItem(ProductItemCreateDto productItemCreate);
+
+        List<ProductItemDto> GetProductItemsForDateExpiration(DateTime expiration);
+
+        ProductItemDto CheckProductItem(ProductItemCheckDto productItemCheck);
     }
 }

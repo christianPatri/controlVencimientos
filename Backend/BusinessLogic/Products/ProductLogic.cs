@@ -32,7 +32,7 @@ namespace BusinessLogic.Products
         }
 
 
-        public Product CreateProduct(ProductCreateDto create)
+        public Product CreateProduct(ProductCreateDto create, ProductSupplier supplier)
         {
             var product = new Product()
             {
@@ -44,10 +44,39 @@ namespace BusinessLogic.Products
                 IsActive = true,
                 CreationDate = DateTime.Now
             };
+            product.Supplier = supplier;
 
             _productRepository.AddAndSave(product);
 
             return product;
+        }
+
+        public List<Product> Generate(List<ProductCreateDto> productsCreate, List<ProductSupplier> suppliers)
+        {
+            var products = new List<Product>();
+
+            productsCreate.ForEach(p =>
+            {
+                var supplier = suppliers.First(s => s.Id == p.SupplierId);
+                var product = CreateProduct(p, supplier);
+                products.Add(product);
+            });
+
+            return products;
+        }
+
+        public List<Product> GenerateByRut(List<ProductCreateDto> productsCreate, List<ProductSupplier> suppliers)
+        {
+            var products = new List<Product>();
+
+            productsCreate.ForEach(p =>
+            {
+                var supplier = suppliers.First(s => s.Rut == p.SupplierRut);
+                var product = CreateProduct(p, supplier);
+                products.Add(product);
+            });
+
+            return products;
         }
 
         public void DeleteProduct(Product product)
@@ -72,6 +101,20 @@ namespace BusinessLogic.Products
             _nullEntityValidator.ValidateById(product, "Producto");
 
             return product;
+        }
+
+        public List<Product> GetActiveProducts()
+        {
+            var products = _productRepository.IncludeAll("Supplier").Where(p => p.IsActive).ToList();
+
+            return products;
+        }
+
+        public List<Product> GetProductsFromSupplier(ProductSupplier supplier)
+        {
+            var products = _productRepository.IncludeAll("Supplier").Where(p => p.IsActive && p.SupplierId == supplier.Id).ToList();
+
+            return products;
         }
     }
 }

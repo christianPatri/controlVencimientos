@@ -27,6 +27,15 @@ namespace Services.Products
 
         }
 
+        public List<ProductSupplierDto> GetActiveSuppliers()
+        {
+            var suppliers = _productSupplierLogic.GetActiveSuppliers();
+
+            var dto = _mapper.Map<List<ProductSupplierDto>>(suppliers );
+
+            return dto;
+        }
+
         public ProductSupplierDto CreateSupplier(ProductSupplierCreateDto supplierToCreate)
         {
             _productSupplierLogic.ValidateSupplierToCreate(supplierToCreate);
@@ -43,6 +52,15 @@ namespace Services.Products
             _productSupplierLogic.DeleteSupplier(supplier);
 
             return supplierToDelete;
+        }
+
+        public ProductSupplierDto GetSupplierById(int supplierId)
+        {
+            var supplier = _productSupplierLogic.GetBy(supplierId);
+
+            var dto = _mapper.Map<ProductSupplierDto>(supplier);
+
+            return dto;
         }
     }
 }

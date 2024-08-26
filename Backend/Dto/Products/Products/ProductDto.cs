@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dto.Products.ProductSuppliers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace Dto.Products.Products
         public DateTime CreationDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        //public ProductSupplierDto Supplier { get; set; }
+
+        public int SupplierId { get; set; }
+
+        public string SupplierName { get; set; }
 
         public ProductDto() { }
     }

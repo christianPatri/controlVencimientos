@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 
 namespace Domain.Users
 {
@@ -60,6 +61,10 @@ namespace Domain.Users
         }
 
         public Guid Token { get; set; }
+
+        public UserRoles Role { get; set; }
+
+        public bool IsActive { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
