@@ -45,9 +45,9 @@ namespace webApi.Controllers.Bulks
                 await file.CopyToAsync(stream);
             }
 
-            _bulkService.LoadSuppliersExcell(filePath);
+            var excelUploadResponse = _bulkService.LoadSuppliersExcell(filePath);
 
-            return Ok();
+            return Ok(excelUploadResponse);
         }
 
         //[HttpPost("cargar-json")]

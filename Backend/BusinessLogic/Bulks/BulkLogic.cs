@@ -1,4 +1,5 @@
 ﻿using Domain.Products;
+using Dto.Bulks;
 using Dto.Products.ProductItems;
 using Dto.Products.Products;
 using Dto.Products.ProductSuppliers;
@@ -16,15 +17,15 @@ namespace BusinessLogic.Bulks
     {
         public BulkLogic() { }
 
-        public List<ProductSupplierCreateDto> ReadSuppliersFromExcell(string fileRoute)
+        public SuppliersExcelUploadDto ReadSuppliersFromExcell(string fileRoute)
         {
+            var excelUpload = new SuppliersExcelUploadDto();
             var productSuppliers = new List<ProductSupplierCreateDto>();
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (var package = new ExcelPackage(new FileInfo(fileRoute)))
             {
-
                 var worksheet = package.Workbook.Worksheets.First();
                 var rowCount = worksheet.Dimension.Rows;
 
@@ -52,12 +53,15 @@ namespace BusinessLogic.Bulks
                     }
                     catch(Exception ex)
                     {
+                        excelUpload.RowsError.Add(row);
                         Console.WriteLine(  ex);
                     }
                 }
             }
 
-            return productSuppliers;
+            excelUpload.SuppliersToCreate = productSuppliers;
+
+            return excelUpload;
         }
 
         private List<int> ConvertStringToListInt(string input)
@@ -74,15 +78,15 @@ namespace BusinessLogic.Bulks
             return list;
         }
 
-        public List<ProductCreateDto> ReadProductsFromExcell(string fileRoute)
+        public ProductsExcelUploadDto ReadProductsFromExcell(string fileRoute)
         {
+            var excelUpload = new ProductsExcelUploadDto();
             var products = new List<ProductCreateDto>();
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (var package = new ExcelPackage(new FileInfo(fileRoute)))
             {
-
                 var worksheet = package.Workbook.Worksheets.First();
                 var rowCount = worksheet.Dimension.Rows;
 
@@ -107,23 +111,25 @@ namespace BusinessLogic.Bulks
                     }
                     catch (Exception ex)
                     {
+                        excelUpload.RowsError.Add(row);
                         Console.WriteLine(ex);
                     }
                 }
             }
 
-            return products;
+            excelUpload.ProductsToCreate = products;
+            return excelUpload;
         }
 
-        public ProductItemsGeneratorDto ReadProductItemsFromExcell(string fileRoute)
+        public ProductItemsExcelUploadDto ReadProductItemsFromExcell(string fileRoute)
         {
+            var excelUpload = new ProductItemsExcelUploadDto();
             var products = new ProductItemsGeneratorDto();
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (var package = new ExcelPackage(new FileInfo(fileRoute)))
             {
-
                 var worksheet = package.Workbook.Worksheets.First();
                 var rowCount = worksheet.Dimension.Rows;
 
@@ -142,7 +148,9 @@ namespace BusinessLogic.Bulks
                                 },
                                 ProductCodeBar = worksheet.Cells[row, 2].Text,
                                 ExpirationDate = ConvertStringToDate(worksheet.Cells[row, 3].Text),
-                                Amount = int.Parse(worksheet.Cells[row, 4].Text)
+                                Amount = int.Parse(worksheet.Cells[row, 4].Text),
+                                IsFromExcel = true,
+                                ExcelRow = row
                             };
 
                             products.ProductItemsCreate.Add(product);
@@ -151,11 +159,14 @@ namespace BusinessLogic.Bulks
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
+                        excelUpload.RowsError.Add(row);
                     }
                 }
             }
 
-            return products;
+            excelUpload.ProductItemsGenerator = products;
+
+            return excelUpload;
         }
 
         private DateTime ConvertStringToDate(string date)

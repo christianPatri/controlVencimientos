@@ -20,6 +20,10 @@ namespace Dto.Products.ProductItems
 
         public int Amount { get; set; }
 
+        //Solo para cargas de excel
+        public bool IsFromExcel { get; set; }
+        public int ExcelRow { get; set; }
+
         public ProductItemCreateDto() { }
     }
 }

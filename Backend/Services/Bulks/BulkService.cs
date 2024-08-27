@@ -2,6 +2,7 @@
 using BusinessLogic.Products;
 using BusinessLogic.Users;
 using Domain.Products;
+using Dto.Bulks;
 using Dto.Products.ProductItems;
 using Dto.Products.Products;
 using Dto.Users;
@@ -38,14 +39,14 @@ namespace Services.Bulks
             _userLogic = userLogic; 
         }
 
-        public void LoadSuppliersExcell(string filePath)
+        public SuppliersExcelUploadDto LoadSuppliersExcell(string filePath)
         {
             var route = filePath;
-            var suppliersToCreate = _bulkLogic.ReadSuppliersFromExcell(route);
+            var excelUpload = _bulkLogic.ReadSuppliersFromExcell(route);
 
             var suppliers = new List<ProductSupplier>();
 
-            suppliersToCreate.ForEach(s =>
+            excelUpload.SuppliersToCreate.ForEach(s =>
             {
                 try
                 {
@@ -55,49 +56,56 @@ namespace Services.Bulks
                 }
                 catch (Exception e)
                 {
+                    excelUpload.SuppliersError.Add(s);
                     Console.WriteLine(e);
                 }
                 
             });
+
+            return excelUpload;
         }
 
-        public void LoadProductsExcell(string filePath)
+        public ProductsExcelUploadDto LoadProductsExcell(string filePath)
         {
             var route = filePath;
-            var productsToCreate = _bulkLogic.ReadProductsFromExcell(route);
+            var excelUpload = _bulkLogic.ReadProductsFromExcell(route);
 
-            var products = new List<Product>();
-            var suppliers = new List<ProductSupplier>();
+            //var products = new List<Product>();
+            //var suppliers = new List<ProductSupplier>();
 
             var productsToGenerate = new List<ProductCreateDto>();
 
-            productsToCreate.ForEach(p =>
+            excelUpload.ProductsToCreate.ForEach(p =>
             {
                 try
                 {
                     _productLogic.ValidateProductToCreate(p);
                     var supplier = _productSupplierLogic.GetBy(p.SupplierRut);
-                    suppliers.Add(supplier);
+                    _productLogic.CreateProduct(p, supplier);
+                    //suppliers.Add(supplier);
                     productsToGenerate.Add(p);
                 }
                 catch (Exception e)
                 {
+                    excelUpload.ProductsError.Add(p);
                     Console.WriteLine(e);
                 }
             });
 
-            products = _productLogic.GenerateByRut(productsToGenerate, suppliers);
+            //products = _productLogic.GenerateByRut(productsToGenerate, suppliers);
+
+            return excelUpload;
 
         }
 
-        public void LoadProductItemsExcell(string filePath)
+        public ProductItemsExcelUploadDto LoadProductItemsExcell(string filePath)
         {
             var route = filePath;
-            var productItemsToCreate = _bulkLogic.ReadProductItemsFromExcell(route);
+            var excelUpload = _bulkLogic.ReadProductItemsFromExcell(route);
 
             var productItemsToGenerate = new List<ProductItem>();
 
-            productItemsToCreate.ProductItemsCreate.ForEach(p =>
+            excelUpload.ProductItemsGenerator.ProductItemsCreate.ForEach(p =>
             {
                 try
                 {
@@ -108,9 +116,14 @@ namespace Services.Bulks
                 }
                 catch (Exception e)
                 {
+                    excelUpload.ProductItemsError.Add(p);
                     Console.WriteLine(e);
                 }
             });
+
+            //Asigno nulo, no tiene sentido devolver todo.
+            excelUpload.ProductItemsGenerator = null;
+            return excelUpload;
         }
 
         public void CheckProductItemsByExcel(string filePath, UserDto user)

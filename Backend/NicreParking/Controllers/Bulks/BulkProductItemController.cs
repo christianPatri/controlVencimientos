@@ -46,9 +46,9 @@ namespace webApi.Controllers.Bulks
                 await file.CopyToAsync(stream);
             }
 
-            _bulkService.LoadProductItemsExcell(filePath);
+            var excelUploadResponse = _bulkService.LoadProductItemsExcell(filePath);
 
-            return Ok();
+            return Ok(excelUploadResponse);
         }
 
         [HttpPost("CheckByExcel")]
