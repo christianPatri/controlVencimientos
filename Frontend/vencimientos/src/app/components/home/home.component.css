@@ -1,4 +1,4 @@
-.list-home{
+/* .list-home{
   text-align: center;
   border-style: solid;
   border-color: brown;
@@ -9,6 +9,62 @@
   text-align: left;
   padding-top: 6%;
   float: none;
+}
+
+ */
+
+ .jumbotron {
+  /* background-color: #eaf7ec; */
+  background-color: #f0f4f8;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sutil sombra para resaltar la sección */
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+.list-home {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #74c69d; /* Verde pastel para armonizar con el sidebar */
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px; /* Bordes redondeados para un diseño más moderno */
+  transition: background-color 0.3s ease; /* Transición suave al hacer hover */
+}
+
+.list-home:hover {
+  /* background-color: #b0e4c5; */
+  background-color: #d1e7dd;
+  cursor: pointer;
+}
+
+.display-list-home h3 {
+  color: #2c3e50; /* Gris oscuro para los títulos */
+  font-weight: bold;
+}
+
+.display-list-home p {
+  color: #34495e; /* Gris un poco más claro para los párrafos */
+}
+
+img {
+  border-radius: 50%; /* Hacer que las imágenes sean redondeadas */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.jumbotron h3 {
+  color: #2c3e50; /* Gris oscuro para los encabezados */
+}
+
+.jumbotron p {
+  color: #34495e; /* Gris medio para los textos explicativos */
+}
+
+.display-list-home {
+  padding-top: 1rem;
 }
 
 

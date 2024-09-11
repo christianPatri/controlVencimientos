@@ -60,6 +60,12 @@ export class ProductsService {
     return this.http.get<Product[]>(this.productsUrl + path + "/" + codeBar, this.requestOptions);
   }
 
+  getProduct(productId: number): Observable<Product> {
+    // let path = "GetByName";
+
+    return this.http.get<Product>(this.productsUrl + productId, this.requestOptions);
+  }
+
 
 
   getSupplierProducts(supplierId: number): Observable<Product[]> {

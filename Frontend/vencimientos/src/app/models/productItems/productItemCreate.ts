@@ -6,4 +6,6 @@ export class ProductItemCreate {
   product!: Product;
   expirationDate!: Date;
   amount!: number;
+  errorMessage!: string;
+  productCodeBar!: string;
 }

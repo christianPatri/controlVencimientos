@@ -3,7 +3,7 @@
   margin-top: 50px;
 } */
 
-.home-description {
+/* .home-description {
   text-align: center;
   padding-top: 10px;
 }
@@ -16,4 +16,28 @@
 .page-title {
   background-color: rgb(170, 227, 154);
 
+} */
+
+
+.page-title {
+  background-color: #d1e7dd; /* Verde claro suave, igual al hover del sidebar */
+  padding: 20px;
+  border-radius: 5px; /* Bordes suaves */
+  text-align: center; /* Centrar el contenido */
 }
+
+.home-description {
+  color: #2c3e50; /* Texto gris oscuro, el mismo que los enlaces del sidebar */
+  font-size: 1.5rem; /* Tamaño de texto ligeramente más grande */
+  margin: 0;
+  padding-top: 10px;
+  text-transform: uppercase; /* Letras mayúsculas para mayor impacto */
+}
+
+.hr-title {
+  width: 50%; /* Más corto para que no ocupe toda la pantalla */
+  margin: 10px auto; /* Centrar el hr */
+  border-top: 2px solid #2c3e50; /* Gris oscuro para coincidir con el texto */
+  border-bottom: none;
+}
+

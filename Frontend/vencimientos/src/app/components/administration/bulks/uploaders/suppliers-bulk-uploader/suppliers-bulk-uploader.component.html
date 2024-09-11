@@ -1,0 +1,73 @@
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <div class="container">
+    <div class="row list-home">
+      <div class="col-md-12">
+        <h4>Cargar archivo Excel proveedores</h4>
+        <hr>
+        <form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+          <div class="form-group">
+            <!-- Contenedor que simula el cuadro de diálogo con borde -->
+            <div class="file-chooser">
+
+              <!-- Botón de seleccionar archivo, alineado a la izquierda -->
+              <label for="file" class="btn btn-success rounded-button-chooser" style="margin-right: 10px;">
+                Seleccionar archivo
+              </label>
+
+              <input type="file" id="file" (change)="onFileChange($event)" style="display: none;">
+
+              <span id="file-name">{{ fileName ? fileName : 'Ningún archivo seleccionado' }}</span>
+            </div>
+          </div>
+
+          <div class="btn-uploader">
+            <button type="submit" class="btn btn-success rounded-button" [disabled]="!selectedFile">
+              <i class="bi bi-upload bi-lg"></i> Subir
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="col-md-12 result-list" *ngIf="_showResultSection">
+        <h4>Resultado carga archivo</h4>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-12">
+            <span>Cantidad proveedores en archivo: </span>
+            <span>{{_supplierExcelUploadResult.suppliersToCreate.length + _supplierExcelUploadResult.rowsError.length}}</span>
+          </div>
+
+          <div class="col-md-12">
+            <span>Cantidad proveedores creados: </span>
+            <span>{{_supplierExcelUploadResult.suppliersToCreate.length - _supplierExcelUploadResult.suppliersError.length}}</span>
+          </div>
+
+          <div class="col-md-12">
+            <span>Cantidad proveedores con error en el archivo: </span>
+            <span>{{_supplierExcelUploadResult.rowsError.length}}</span>
+          </div>
+
+          <div class="col-md-12">
+            <span>Cantidad proveedores con errores al crearse: </span>
+            <span>{{_supplierExcelUploadResult.suppliersError.length}}</span>
+          </div>
+        </div>
+        <br>
+
+        <div>
+          <button type="button" class="btn btn-success rounded-button" (click)="downloadResultReport()">
+            <i class="bi bi-download bi-lg"></i> Descargar Resultado
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+

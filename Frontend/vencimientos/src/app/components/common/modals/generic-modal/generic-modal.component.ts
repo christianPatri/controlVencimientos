@@ -78,6 +78,10 @@ export class GenericModalComponent implements OnInit{
   @Input() productToDelete!: Product;
 
 
+  //Session
+  @Input() isLoggingOut!:boolean;
+
+
   constructor() { }
 
   ngOnInit() { }

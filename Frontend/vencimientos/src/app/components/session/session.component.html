@@ -1,19 +1,24 @@
 <div class="container">
+  <div class="login-title">
+    <h2>Iniciar Sesión</h2>
+    <p class="login-description">Por favor, ingrese su nombre de usuario y su contraseña.</p>
+  </div>
+
   <div class="row formulary">
     <div class="d-flex justify-content-center animated fadeIn fast">
-      <div class="w-50">
-          <form (ngSubmit)="login(f)" #f="ngForm">
-              <div class="form-group">
-                  <label for="usernameInput">Usuario</label>
-                  <input type="username" name="username" [(ngModel)]="user.username" class="form-control" id="usernameInput">
-              </div>
-              <div class="form-group">
-                  <label for="passwordInput">Password</label>
-                  <input type="password" name="password" [(ngModel)]="user.password" class="form-control" id="passwordInput">
-              </div>
+      <div class="w-100">
+        <form (ngSubmit)="login(f)" #f="ngForm">
+          <div class="form-group">
+            <label for="usernameInput">Usuario</label>
+            <input type="username" name="username" [(ngModel)]="user.username" class="form-control" id="usernameInput">
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Contraseña</label>
+            <input type="password" name="password" [(ngModel)]="user.password" class="form-control" id="passwordInput">
+          </div>
 
-              <button type="submit" class="btn btn-primary">Login</button>
-          </form>
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
       </div>
     </div>
   </div>
@@ -22,13 +27,13 @@
     <div class="d-flex justify-content-center animated fadeIn fast">
       <div *ngIf="showingAlert" style="padding-top: 20px">
         <div class="alert alert-danger col-form-label-sm" role="alert">
-            {{ messageError }}
+          {{ messageError }}
         </div>
       </div>
 
       <div *ngIf="showingConfirmationPanel" style="padding-top: 20px">
         <div class="alert alert-success col-form-label-sm" role="alert">
-            {{ messageError }}
+          {{ messageError }}
         </div>
       </div>
     </div>

@@ -1,7 +1,114 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  background-color: #f0f8f4; /* Fondo claro para la página de login */
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el contenedor */
+  width: 100%;
+  max-width: 500px; /* Ancho máximo para el formulario */
+  margin: auto; /* Centrar horizontalmente */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrar vertical y horizontalmente */
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1rem; /* Espacio entre el título y el formulario */
+}
+
+.login-title h2 {
+  color: #2c3e50; /* Gris oscuro para el título */
+  font-weight: bold;
+}
+
+.login-description {
+  font-size: 1.1rem; /* Slightly larger font size for readability */
+  color: #6c757d; /* Gray color to differentiate from the title */
+  margin-bottom: 30px; /* Space between description and form */
+}
+
 .formulary {
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 1rem; /* Espacio entre campos del formulario */
+}
+
+.form-group label {
+  color: #2c3e50; /* Color de texto para las etiquetas */
+  font-weight: bold;
+}
+
+.form-group input {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.form-group input:focus {
+  border-color: #74c69d; /* Color de borde al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(116, 198, 157, 0.25); /* Sombra de enfoque */
+}
+
+.btn-primary {
+  background-color: #74c69d; /* Verde pastel para el botón */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+  margin-top: 1rem; /* Espacio entre el formulario y el botón */
+}
+
+.btn-primary:hover {
+  background-color: #5a9a6e; /* Color más oscuro para hover */
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.alert-danger {
+  background-color: #f8d7da; /* Fondo claro para el mensaje de error */
+  color: #721c24; /* Color de texto para el mensaje de error */
+}
+
+.alert-success {
+  background-color: #d4edda; /* Fondo claro para el mensaje de éxito */
+  color: #155724; /* Color de texto para el mensaje de éxito */
+}
+
+.d-flex {
+  margin-top: 1rem;
+}
+
+.animated {
+  animation: fadeIn 1s ease-in;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .btn-primary{
-    margin-top: 10px;
+  to {
+    opacity: 1;
   }
+}

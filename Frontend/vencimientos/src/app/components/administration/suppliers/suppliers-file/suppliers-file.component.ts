@@ -116,6 +116,10 @@ export class SuppliersFileComponent implements OnInit {
     }
   }
 
+  handleViewProductFile(product: Product) {
+    this.router.navigate( [`administration/products/file/${product.id}`]);
+  }
+
   triggerErrorProduct(message: string): void {
     this.errorProductDelete.next(message);
   }

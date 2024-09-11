@@ -11,22 +11,18 @@ import { PageTitleComponent } from '../common/pagestitles/page-title/page-title.
 })
 export class HomeComponent implements OnInit {
 
-  _pageTitle: string = "Sistema de gestion de parking";
+  _pageTitle: string = "Sistema de gestion de vencimientos";
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  public navigateToMonthlyParking(){
-    this.router.navigate( ['monthlyClients']);
+  public navigateToCalendar(){
+    this.router.navigate( ['calendar']);
   }
 
-  public navigateToHourParking(){
-    this.router.navigate( ['hourlyClients']);
-  }
-
-  public navigateToNightlyParking(){
-    this.router.navigate( ['nightlyClients']);
+  public navigateInProducts(){
+    this.router.navigate( ['productItems/new']);
   }
 }

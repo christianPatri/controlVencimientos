@@ -1,17 +1,54 @@
-<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
-  <div class="form-group">
-    <label for="file">Seleccionar archivo Excel</label>
-    <input type="file" id="file" (change)="onFileChange($event)" class="form-control" required>
+<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+
+  <app-page-title
+   [componentTitle]="_pageTitle">
+  </app-page-title>
+
+  <div class="container">
+    <div class="row list-home">
+
+      <div>
+        <div class="row radio-buttons">
+          <div class="col-md-4">
+            <label class="radio-label">
+              <input type="radio" name="option" value="1" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" checked />
+              Carga Proveedores
+            </label>
+          </div>
+
+          <div class="col-md-4">
+            <label class="radio-label">
+              <input type="radio" name="option" value="2" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" />
+              Carga Productos
+            </label>
+          </div>
+
+          <div class="col-md-4">
+            <label>
+              <input type="radio" name="option" value="3" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" />
+              Carga productos Minimercado
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" *ngIf="_showSupplierUpload">
+        <app-suppliers-bulk-uploader></app-suppliers-bulk-uploader>
+      </div>
+
+      <div class="col-md-12" *ngIf="_showProductsUpload">
+        <app-products-bulk-uploader></app-products-bulk-uploader>
+      </div>
+
+      <div class="col-md-12" *ngIf="_showProductItemsUpload">
+        <app-product-items-bulk-uploader></app-product-items-bulk-uploader>
+      </div>
+
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Subir</button>
-</form>
+
+</div>
 
 
 
-<form (ngSubmit)="onSubmitProducts()" #uploadForm2="ngForm">
-  <div class="form-group">
-    <label for="file">Seleccionar archivo Excel Productos</label>
-    <input type="file" id="file" (change)="onFileChangeProducts($event)" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!selectedFileProducts">Subir</button>
-</form>
+

@@ -48,4 +48,10 @@ export class ProductItemsService {
     return this.http.post<ProductItem>(this.productsUrl + path, productItemToCheck, this.requestOptions);
   }
 
+  getProductItems(productId: number) : Observable<ProductItem[]> {
+    let path = 'GetProductItemsBy';
+
+    return this.http.get<ProductItem[]>(this.productsUrl + path + "/" + productId, this.requestOptions);
+
+  }
 }

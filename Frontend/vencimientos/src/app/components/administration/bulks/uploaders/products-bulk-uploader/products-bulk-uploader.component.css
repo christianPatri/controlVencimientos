@@ -1,0 +1,63 @@
+.list-home{
+  text-align: center;
+  /* border-style: solid;
+  border-color: brown; */
+  margin-top: 1cm;
+}
+
+.display-list-home{
+  text-align: center;
+  padding-top: 1%;
+  float: none;
+}
+
+.submit-button {
+  margin-top: 10px;
+  margin-left: 70px;
+}
+
+.rounded-button {
+  border-radius: 20px; /* Ajusta el valor según tu preferencia */
+  margin-bottom: 10px;
+}
+
+.bi-lg {
+  font-size: 16px; /* Tamaño personalizado */
+  font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1000; /* Z-index para colocar encima de todo */
+}
+
+/* Estilos para centrar el spinner */
+:host {
+  justify-content: center;
+  align-items: center;
+}
+
+.result-list {
+  margin-top: 10px;
+}
+
+.btn-uploader {
+  margin-top: 10px;
+}
+
+.file-chooser {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px; display: flex;
+  align-items: center;
+   /* max-width: 400px; */
+}
+
+.rounded-button-chooser{
+  border-radius: 20px;
+}

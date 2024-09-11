@@ -11,4 +11,5 @@ export class ProductSupplier {
   seller!: string;
   visitDays!: number[];
   interval!: number;
+  errorMessage!: string;
 }

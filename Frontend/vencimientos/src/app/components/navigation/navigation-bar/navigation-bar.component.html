@@ -22,10 +22,6 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['calendar']">Proximos vencimientos</a>
         </li>
-
-        <!-- <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['monthlyClients']">Parking Mensual</a>
-        </li> -->
       </ul>
 
       <ul class="navbar-nav" *ngIf="isLoggedIn() && hasRole('Admin')">
@@ -40,21 +36,8 @@
                 <a class="dropdown-item" [routerLink]="['administration/fileUploads']">Carga Excel</a>
             </div>
         </li>
+      </ul>
 
-        <!-- <li class="nav-item dropdown ml-auto" >
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" (click)="toggleDropdownReports()">Reportes</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngClass="{show: showDropDownReports, disabled: !showDropDownReports}" #dropdownReportsMenu>
-              <a class="dropdown-item" [routerLink]="['administration/monthlyDebtorsReport']">Reporte Deudores Mensuales</a>
-              <a class="dropdown-item" [routerLink]="['administration/monthlyReport']">Reporte Parking Mensual</a>
-              <a class="dropdown-item" [routerLink]="['administration/hourlyReport']">Reporte Parking Por hora</a>
-              <a class="dropdown-item" [routerLink]="['administration/nightlyReport']">Reporte Parking Nocturno</a>
-          </div>
-        </li> -->
-
-        <!-- <li class="nav-item active">
-          <a class="nav-link" [routerLink] ="['administration/monthlyClients']"> Gestion mensualidades </a>
-        </li> -->
-    </ul>
       <div class="ml-auto ">
         <ul class="navbar-nav navbar-right navbar-login" style="margin-left: 10px;">
           <li class="nav-item" routerLinkActive="active">

@@ -1,7 +1,6 @@
-.title  {
+/* .title  {
   margin-left: 10px;
 }
-
 
 .navbar-login {
   margin-left: 10px;
@@ -13,19 +12,81 @@
 }
 
 .navbar-nav .nav-link {
-  cursor: pointer; /* Cambia el cursor a una mano al pasar el mouse sobre los enlaces */
+  cursor: pointer;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #ffffff; /* Cambia el color del texto cuando se pasa el mouse sobre el enlace */
-  background-color: #007bff; /* Cambia el color de fondo cuando se pasa el mouse sobre el enlace */
+  color: #ffffff;
+  background-color: #007bff;
 }
 
 .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
-  display: block; /* Muestra el menú desplegable cuando se pasa el mouse sobre el elemento padre */
+  display: block;
 }
 
 .disabled {
-  pointer-events: none; /* Deshabilita los eventos de clic en el elemento */
-  opacity: 0.6; /* Puedes agregar un estilo adicional para hacer que el elemento parezca desactivado */
+  pointer-events: none;
+  opacity: 0.6;
+} */
+
+
+/* Estilo del Navbar */
+.navbar {
+  background-color: #a6d7b9; /* Verde pastel similar al sidebar */
+  border-bottom: 1px solid #6c757d; /* Gris oscuro para definir la separación */
+}
+
+.navbar-brand {
+  color: #2c3e50 !important; /* Gris oscuro consistente con el texto del sidebar */
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar-toggler {
+  border-color: #2c3e50; /* Gris oscuro para el ícono del menú */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2840, 60, 73, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22' /%3E%3C/svg%3E"); /* Ícono del menú gris oscuro */
+}
+
+.navbar-nav .nav-link {
+  color: #2c3e50 !important; /* Texto gris oscuro para los enlaces */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important; /* Blanco al hacer hover */
+  background-color: #74c69d !important; /* Verde pastel más oscuro al hacer hover */
+}
+
+.nav-item.dropdown .dropdown-menu {
+  background-color: #f0f4f8; /* Fondo claro */
+  border: 1px solid #2c3e50; /* Borde gris oscuro */
+}
+
+.dropdown-item {
+  color: #2c3e50; /* Texto gris oscuro en los items del dropdown */
+}
+
+.dropdown-item:hover {
+  background-color: #74c69d; /* Verde pastel al hacer hover */
+  color: #ffffff; /* Blanco para el texto */
+}
+
+.btn-primary {
+  background-color: #2c3e50; /* Gris oscuro para el botón de login */
+  border-color: #2c3e50;
+}
+
+.btn-primary:hover {
+  background-color: #007bff; /* Azul al hacer hover */
+  border-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #e74c3c; /* Rojo para logout */
+}
+
+.btn-danger:hover {
+  background-color: #c0392b; /* Rojo más oscuro al hacer hover */
 }

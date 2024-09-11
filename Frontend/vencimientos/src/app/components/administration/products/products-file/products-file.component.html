@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron jumbotron-fluid animated fadeIn fast">
+        <div class="overlay" *ngIf="_isLoading"></div>
+        <app-spinner *ngIf="_isLoading"></app-spinner>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <app-page-title
+                [componentTitle]="_pageTitle">
+              </app-page-title>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row list-home">
+            <div class="col-md-12">
+              <div *ngIf="!_isLoading">
+                <app-products-card
+                  [product] ="_product"
+                  (productEditEvent)="handleEditProduct($event)"
+
+                  >
+                </app-products-card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row list-home">
+            <div class="col-md-12">
+              <div *ngIf="!_isLoading">
+                <app-product-items-movements
+                  [product] ="_product"
+                  >
+                </app-product-items-movements>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

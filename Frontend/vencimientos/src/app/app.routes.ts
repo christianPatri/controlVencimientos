@@ -25,6 +25,7 @@ import { CalendarComponent } from './components/common/calendar/calendar/calenda
 import { CalendarDayComponent } from './components/common/calendar/calendar-day/calendar-day.component';
 import { BulkUploadersComponent } from './components/administration/bulks/bulk-uploaders/bulk-uploaders.component';
 import { SuppliersFileComponent } from './components/administration/suppliers/suppliers-file/suppliers-file.component';
+import { ProductsFileComponent } from './components/administration/products/products-file/products-file.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,28 +33,19 @@ export const routes: Routes = [
   { path: 'login', component: SessionComponent },
   { path: 'users', component: UsersComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin']} },
 
-
-  // { path: 'administration/monthlyClients', component: AdmininstrationMonthlyClientsComponent, canActivate: [ AuthGuardService ] },
-  // { path: 'administration/monthlyClients/new', component: MonthlyClientsGeneratorComponent, canActivate: [ AuthGuardService ] },
-  // { path: 'administration/monthlyClients/file/:id', component: MonthlyClientsFileComponent, canActivate: [ AuthGuardService ] },
-  // { path: 'administration/monthlyClients/file/:id/vehicleMovements', component: MonthlyVehicleMovementsComponent, canActivate: [ AuthGuardService ] },
-  // { path: 'administration/monthlyDebtorsReport', component: MonthlyDebtorsReportComponent, canActivate: [ AuthGuardService] },
-  // { path: 'administration/nightlyReport', component: NightlyParkingReportComponent, canActivate: [ AuthGuardService] },
-  // { path: 'administration/hourlyReport', component: HourlylyParkingReportComponent, canActivate: [ AuthGuardService] },
-  // { path: 'administration/monthlyReport', component: MonthlyParkingReportComponent, canActivate: [ AuthGuardService] },
-
-
-  { path: 'administration/settings', component: SettingsComponent, canActivate: [ AuthGuardService] },
-  { path: 'administration/suppliers', component: SuppliersComponent, canActivate: [ AuthGuardService] },
-  { path: 'administration/suppliers/new', component: SuppliersGeneratorComponent, canActivate: [ AuthGuardService ] },
+  { path: 'administration/settings', component: SettingsComponent, canActivate: [ AuthGuardService], data: { roles: ['Admin']} },
+  { path: 'administration/suppliers', component: SuppliersComponent, canActivate: [ AuthGuardService], data: { roles: ['Admin']} },
+  { path: 'administration/suppliers/new', component: SuppliersGeneratorComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin']} },
   { path: 'administration/suppliers/file/:id', component: SuppliersFileComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin']} },
 
-  { path: 'administration/products', component: ProductsComponent, canActivate: [ AuthGuardService] },
-  { path: 'administration/products/new', component: ProductsGeneratorComponent, canActivate: [ AuthGuardService ] },
+  { path: 'administration/products', component: ProductsComponent, canActivate: [ AuthGuardService], data: { roles: ['Admin']} },
+  { path: 'administration/products/new', component: ProductsGeneratorComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin']} },
+  { path: 'administration/products/file/:id', component: ProductsFileComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin']} },
+
   { path: 'productItems/new', component: ProductItemsGeneratorComponent, canActivate: [ AuthGuardService ], data: { roles: ['Admin', 'Operator']} },
-  { path: 'calendar', component: CalendarComponent },
-  { path: 'calendar/:year/:month/:day', component: CalendarDayComponent },
-  { path: 'administration/fileUploads', component: BulkUploadersComponent, canActivate: [ AuthGuardService] },
+  { path: 'calendar', component: CalendarComponent, data: { roles: ['Admin', 'Operator']} },
+  { path: 'calendar/:year/:month/:day', component: CalendarDayComponent, data: { roles: ['Admin', 'Operator']} },
+  { path: 'administration/fileUploads', component: BulkUploadersComponent, canActivate: [ AuthGuardService], data: { roles: ['Admin'] } },
 
   { path: '**', pathMatch: 'full', redirectTo: '/home'}
 ];

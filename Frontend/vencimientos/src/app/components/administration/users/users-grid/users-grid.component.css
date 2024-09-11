@@ -1,4 +1,4 @@
-table {
+/* table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -21,11 +21,11 @@ tr:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Espacio opcional entre la barra de búsqueda y la tabla */
+  margin-bottom: 20px;
 }
 
 .search-bar input[type="text"] {
-  margin-right: 10px; /* Espacio entre los campos de búsqueda */
+  margin-right: 10px;
 }
 
 .search-bar button {
@@ -51,11 +51,11 @@ tr:hover {
 }
 
 .rounded-button {
-  border-radius: 20px; /* Ajusta el valor según tu preferencia */
+  border-radius: 20px;
 }
 
 .bi-lg {
-  font-size: 16px; /* Tamaño personalizado */
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -70,4 +70,121 @@ tr:hover {
 
 .hr-header {
   margin-top: 0px;
+} */
+
+
+
+/* Estilos generales para el layout del componente usergrid */
+.container {
+  background-color: #ffffff; /* Fondo blanco para un buen contraste */
+  border: 1px solid #b7d7bf; /* Borde suave que combina con la barra lateral */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.header-title {
+  color: #2f4f4f; /* Texto gris oscuro para el encabezado */
+  text-align: center;
+  font-weight: bold;
+}
+
+.hr-header {
+  border-top: 2px solid #82b59a; /* Línea divisoria que coincide con el tema */
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f4f7f6; /* Fondo claro para las filas */
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #82b59a; /* Borde inferior */
+  color: #2f4f4f; /* Texto oscuro para buena legibilidad */
+}
+
+th {
+  background-color: #82b59a; /* Fondo verde suave */
+  color: white; /* Texto en blanco para el encabezado */
+}
+
+tr:hover {
+  background-color: #e0ece4; /* Efecto hover claro en las filas */
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #b7d7bf;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #4c8c6c; /* Verde más oscuro para resaltar el botón */
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #3e7255; /* Efecto hover */
+}
+
+/* Botones de la grilla */
+.grid-button {
+  background-color: #4c8c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.grid-button:hover {
+  background-color: #3e7255;
+}
+
+/* Botón para agregar usuario centrado */
+.add-user-button {
+  display: block;
+  margin: 16px auto; /* Centra el botón horizontalmente */
+  background-color: #4c8c6c;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.add-user-button:hover {
+  background-color: #3e7255;
+}
+
+
+/* Alertas */
+.alerts .alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alerts .alert-success {
+  background-color: #d4edda;
+  color: #155724;
 }

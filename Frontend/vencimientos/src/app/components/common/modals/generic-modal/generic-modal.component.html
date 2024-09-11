@@ -265,6 +265,25 @@
           Eliminar
         </button>
       </div>
+
+      <div *ngIf="isLoggingOut" class="container mt-4">
+        <div class="row">
+          <span>Seguro desea salir de la sesion ?
+          </span>
+
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <div class="modal-footer" *ngIf="isLoggingOut" >
+        <button type="button" class="btn btn-success rounded-button" (click)="handleCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success rounded-button" (click)="handleSubmit()">
+          Aceptar
+        </button>
+      </div>
     </div>
   </div>
 </div>

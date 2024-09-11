@@ -1,27 +1,32 @@
-/* sidebar.component.css */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: 16.6666%;
-  /* max-width: 208px; */
-  background-color: #aad8a2; /* Color de fondo del sidebar */
-  padding-top: 0.5rem; /* Ajuste según sea necesario */
+  background-color: #f0f4f8; /* Fondo gris claro */
+  padding-top: 0.5rem;
+}
+
+.sidebar-brand-text {
+  color: #2c3e50; /* Texto gris oscuro */
 }
 
 .nav-link {
-  color: #fff; /* Color de texto de los enlaces */
+  color: #2c3e50; /* Texto gris oscuro */
 }
 
+.nav-link:hover {
+  background-color: #d1e7dd; /* Fondo verde claro al hacer hover */
+  color: #2c3e50; /* Texto gris oscuro al hacer hover */
+}
 
 .sidebar hr.sidebar-divider {
   margin: 0 1rem 1rem;
+  border-color: #a3b5c3; /* Gris claro */
 }
 
-
 .sidebar-brand {
-  /* height: $topbar-base-height; */
   text-decoration: none;
   font-size: 1rem;
   font-weight: 800;
@@ -29,27 +34,19 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  z-index: 1;
-
-  /* .sidebar-brand-icon i {
-      font-size: 2rem;
-  } */
-
-  /* .sidebar-brand-text {
-      display: none;
-  } */
+  color: #2c3e50; /* Texto gris oscuro */
 }
 
-.my-0 {
-  margin-top: 0 !important;
-}
-
+/* Estilo actualizado para el encabezado de sección */
 .sidebar .sidebar-heading {
-  text-align: center;
-  padding: 0 1rem;
-  font-weight: 800;
-  font-size: 0.65rem;
-
+  text-align: left;
+  padding: 1rem 1rem;
+  font-weight: bold;
+  font-size: 0.9rem; /* Tamaño de la fuente un poco más grande */
+  color: #ffffff; /* Blanco */
+  background-color: #74c69d; /* Fondo verde pastel claro */
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
-
-

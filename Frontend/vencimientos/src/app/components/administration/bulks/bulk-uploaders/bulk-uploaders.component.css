@@ -1,0 +1,70 @@
+.list-home{
+  text-align: center;
+  border-style: solid;
+  border-color: brown;
+  margin-top: 1cm;
+}
+
+.display-list-home{
+  text-align: center;
+  padding-top: 1%;
+  float: none;
+}
+
+.submit-button {
+  margin-top: 10px;
+  margin-left: 70px;
+}
+
+.rounded-button {
+  border-radius: 20px; /* Ajusta el valor según tu preferencia */
+  margin-bottom: 10px;
+}
+
+.bi-lg {
+  font-size: 16px; /* Tamaño personalizado */
+  font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1000; /* Z-index para colocar encima de todo */
+}
+
+/* Estilos para centrar el spinner */
+:host {
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-buttons {
+  margin-top: 10px;
+}
+
+
+.radio-label-blue {
+  background-color: lightblue;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.radio-label-green {
+  background-color: lightgreen;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.radio-label-red {
+  background-color: lightcoral;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}

@@ -48,6 +48,15 @@ export class BulksService {
       return this.http.post<any>(this.bulkProductUrl + path, formData, this.requestOptions);
     }
 
+    generateProductItemsFromExcel(file: File): Observable<any> {
+      let path = 'Excel';
+
+      const formData: FormData = new FormData();
+      formData.append('file', file, file.name);
+
+      return this.http.post<any>(this.bulkProductItemsUrl + path, formData, this.requestOptions);
+    }
+
     checkProductItemsFromExcel(file: File): Observable<any> {
       let path = 'CheckByExcel';
 
@@ -58,6 +67,6 @@ export class BulksService {
       input.formData = formData;
       input.user = this.sessionService.getUser();
 
-      return this.http.post<any>(this.bulkProductUrl + path, input, this.requestOptions);
+      return this.http.post<any>(this.bulkProductItemsUrl + path, input, this.requestOptions);
     }
 }

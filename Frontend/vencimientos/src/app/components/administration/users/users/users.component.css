@@ -1,89 +1,108 @@
-.home-title {
+.jumbotron-fluid {
+  background-color: #e9f5ed; /* Light greenish color */
+  padding: 20px;
+}
+
+.container {
+  background-color: #ffffff; /* Keep it simple and clean */
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.header-title {
+  color: #333;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 10px !important;
+  font-size: 24px;
 }
 
-.home-description{
-  text-align: center;
-  margin-top: 0,1cm;
-}
-
-.list-home{
-  text-align: center;
-  border-style: solid;
-  border-color: brown;
-  margin-top: 1cm;
-}
-
-.display-list-home{
-  text-align: center;
-  padding-top: 1%;
-  float: none;
-}
-
-.login-section{
-  text-align: center;
-  margin-left: 30%;
-}
-
-.input-container {
-  display: flex;
-  align-items: center;
-}
-
-.input-container input {
-  margin-left: 10px; /* Espacio entre el label y el input */
-}
-
-.input-label {
-  display: inline-block;
-  width: 100px;
-  text-align: left;
-}
-
-.form-input-text {
-  display: inline-block;
-  width: 200px;
-  height: 24px;
-}
-
-.form-custom-col {
-  margin-top: 5px;
-}
-
-.submit-button {
+.hr-header {
+  border-top: 2px solid #58a86d; /* Use the sidebar green tone */
   margin-top: 10px;
-  margin-left: 70px;
+  width: 100%;
 }
 
-.form-hourly-vehicles {
-  margin-bottom: 10px;
-  margin-top: 20px;
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.monthlyButton {
-  margin-bottom: 10px;
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #58a86d; /* Match with sidebar */
 }
 
-.back-button {
-  margin-left: 10px;
-}
-
-/* Estilos para centrar el spinner */
-.grid-button {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-
-.rounded-button {
-  border-radius: 20px; /* Ajusta el valor según tu preferencia */
-}
-
-.bi-lg {
-  font-size: 16px; /* Tamaño personalizado */
+th {
+  background-color: #f1f7f5; /* Light background for table headers */
+  color: #333;
   font-weight: bold;
 }
 
-.add-vehicle-button {
-  margin-bottom: 16px;
+tr:hover {
+  background-color: #d8e9d8; /* Slight hover effect */
 }
+
+/* .search-bar {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.search-bar input[type="text"] {
+  margin-right: 15px;
+  padding: 6px;
+  border: 1px solid #58a86d;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  background-color: #58a86d;
+  border: none;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #45a85a;
+}
+
+.grid-button {
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #58a86d;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.grid-button:hover {
+  background-color: #45a85a;
+}
+
+.add-user-button {
+  background-color: #58a86d;
+  color: white;
+  border-radius: 20px;
+}
+
+.add-user-button:hover {
+  background-color: #45a85a;
+}
+
+.alert {
+  border-radius: 8px;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #ffdddd;
+  color: #d9534f;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  color: #3c763d;
+} */

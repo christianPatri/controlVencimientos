@@ -252,7 +252,7 @@ export class SuppliersGeneratorComponent implements OnInit{
 
     if(!isEdit){
       var products = this._newSupplierProducts;
-      exists = products.find(product => product.barCode.replace(/\s/g, "") == product.barCode.replace(/\s/g, "")) != null;
+      exists = products.find(p => p.barCode.replace(/\s/g, "") == product.barCode.replace(/\s/g, "")) != null;
     }
 
     if(exists){

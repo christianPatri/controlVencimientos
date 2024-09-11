@@ -219,8 +219,8 @@ export class ProductItemsGeneratorComponent implements OnInit{
   mapModalProductCreate(newProduct: ProductItem){
 
     let alreadyCreated = this._newProductItems.find(p => p.product.id == newProduct.product.id
-      && p.expirationDate.getFullYear == newProduct.expirationDate.getFullYear && p.expirationDate.getMonth == newProduct.expirationDate.getMonth
-      && p.expirationDate.getDay == newProduct.expirationDate.getDay)
+      && p.expirationDate.getFullYear() == newProduct.expirationDate.getFullYear() && p.expirationDate.getMonth() == newProduct.expirationDate.getMonth()
+      && p.expirationDate.getDay() == newProduct.expirationDate.getDay())
 
     if(alreadyCreated != null ){
       alreadyCreated.amount += newProduct.amount;
