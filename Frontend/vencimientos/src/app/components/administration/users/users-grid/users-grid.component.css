@@ -1,95 +1,18 @@
-/* table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.search-bar input[type="text"] {
-  margin-right: 10px;
-}
-
-.search-bar button {
-  padding: 8px 16px;
-  border: none;
-  background-color: #198754;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 20px !important;
-}
-
-.search-bar button:hover {
-  background-color: #00b321;
-}
-
-.rounded {
-  border-radius: 0.25rem !important;
-}
-
-.grid-button {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-
-.rounded-button {
-  border-radius: 20px;
-}
-
-.bi-lg {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.add-user-button {
-  margin-bottom: 16px;
-  margin-top: 16px;
-}
-
-.header-title {
-  margin-top: 8px !important;
-}
-
-.hr-header {
-  margin-top: 0px;
-} */
-
-
-
-/* Estilos generales para el layout del componente usergrid */
 .container {
   background-color: #ffffff; /* Fondo blanco para un buen contraste */
-  border: 1px solid #b7d7bf; /* Borde suave que combina con la barra lateral */
+  border: 1px solid #cfd8dc; /* Borde suave que combina con el sidebar */
   padding: 20px;
   border-radius: 8px;
 }
 
 .header-title {
-  color: #2f4f4f; /* Texto gris oscuro para el encabezado */
+  color: #0d47a1; /* Azul oscuro para el encabezado, que armoniza con el sidebar */
   text-align: center;
   font-weight: bold;
 }
 
 .hr-header {
-  border-top: 2px solid #82b59a; /* Línea divisoria que coincide con el tema */
+  border-top: 2px solid #90caf9; /* Línea divisoria que coincide con el tema */
   width: 50%;
   margin: auto;
   margin-bottom: 20px;
@@ -106,17 +29,17 @@ table {
 th, td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 2px solid #82b59a; /* Borde inferior */
-  color: #2f4f4f; /* Texto oscuro para buena legibilidad */
+  border-bottom: 2px solid #90caf9; /* Borde inferior en azul claro */
+  color: #0d47a1; /* Texto en azul oscuro para buena legibilidad */
 }
 
 th {
-  background-color: #82b59a; /* Fondo verde suave */
-  color: white; /* Texto en blanco para el encabezado */
+  background-color: #e3f2fd; /* Fondo azul claro para el encabezado */
+  color: #0d47a1; /* Texto en azul oscuro para el encabezado */
 }
 
 tr:hover {
-  background-color: #e0ece4; /* Efecto hover claro en las filas */
+  background-color: #eaf7fc; /* Efecto hover claro en las filas */
 }
 
 /* Barra de búsqueda */
@@ -129,13 +52,13 @@ tr:hover {
 .search-bar input[type="text"] {
   margin-right: 10px;
   padding: 8px;
-  border: 1px solid #b7d7bf;
+  border: 1px solid #cfd8dc; /* Borde suave en azul claro */
   border-radius: 5px;
 }
 
 .search-bar button {
   padding: 8px 16px;
-  background-color: #4c8c6c; /* Verde más oscuro para resaltar el botón */
+  background-color: #0d47a1; /* Azul oscuro para resaltar el botón */
   color: #ffffff;
   border: none;
   border-radius: 20px;
@@ -143,12 +66,12 @@ tr:hover {
 }
 
 .search-bar button:hover {
-  background-color: #3e7255; /* Efecto hover */
+  background-color: #0066cc; /* Efecto hover en azul más oscuro */
 }
 
 /* Botones de la grilla */
 .grid-button {
-  background-color: #4c8c6c;
+  background-color: #0d47a1;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -157,14 +80,14 @@ tr:hover {
 }
 
 .grid-button:hover {
-  background-color: #3e7255;
+  background-color: #0066cc;
 }
 
 /* Botón para agregar usuario centrado */
 .add-user-button {
   display: block;
   margin: 16px auto; /* Centra el botón horizontalmente */
-  background-color: #4c8c6c;
+  background-color: #0d47a1;
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -174,17 +97,18 @@ tr:hover {
 }
 
 .add-user-button:hover {
-  background-color: #3e7255;
+  background-color: #0066cc;
 }
-
 
 /* Alertas */
 .alerts .alert-danger {
   background-color: #f8d7da;
   color: #721c24;
+  border: 1px solid #cfd8dc;
 }
 
 .alerts .alert-success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border: 1px solid #cfd8dc;
 }

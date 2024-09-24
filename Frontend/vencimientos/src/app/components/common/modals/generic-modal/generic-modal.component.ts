@@ -101,4 +101,12 @@ export class GenericModalComponent implements OnInit{
   handleCancel() {
     this.submittedButton.emit(false);
   }
+
+  onOverlayClick(event: Event) {
+    // Si el clic es en el overlay y no en el contenedor del modal, cierra el modal
+    if ((event.target as HTMLElement).classList.contains('modal-overlay')) {
+      this.closeModal();
+    }
+  }
+
 }

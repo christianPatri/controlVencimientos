@@ -1,33 +1,12 @@
-/* .home-title {
-  text-align: center;
-  margin-top: 50px;
-} */
-
-/* .home-description {
-  text-align: center;
-  padding-top: 10px;
-}
-
-.hr-title {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
 .page-title {
-  background-color: rgb(170, 227, 154);
-
-} */
-
-
-.page-title {
-  background-color: #d1e7dd; /* Verde claro suave, igual al hover del sidebar */
+  background-color: #e3f2fd; /* Azul claro, suave pero no verde */
   padding: 20px;
   border-radius: 5px; /* Bordes suaves */
   text-align: center; /* Centrar el contenido */
 }
 
 .home-description {
-  color: #2c3e50; /* Texto gris oscuro, el mismo que los enlaces del sidebar */
+  color: #0d47a1; /* Azul oscuro, para un buen contraste con el fondo azul claro */
   font-size: 1.5rem; /* Tamaño de texto ligeramente más grande */
   margin: 0;
   padding-top: 10px;
@@ -37,7 +16,6 @@
 .hr-title {
   width: 50%; /* Más corto para que no ocupe toda la pantalla */
   margin: 10px auto; /* Centrar el hr */
-  border-top: 2px solid #2c3e50; /* Gris oscuro para coincidir con el texto */
+  border-top: 2px solid #0d47a1; /* Azul oscuro para coincidir con el texto */
   border-bottom: none;
 }
-

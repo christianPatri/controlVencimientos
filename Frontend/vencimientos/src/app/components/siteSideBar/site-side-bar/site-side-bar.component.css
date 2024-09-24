@@ -16,10 +16,16 @@
   color: #2c3e50; /* Texto gris oscuro */
 }
 
+/* .nav-link:hover {
+  background-color: #d1e7dd;
+  color: #2c3e50;
+} */
+
 .nav-link:hover {
-  background-color: #d1e7dd; /* Fondo verde claro al hacer hover */
-  color: #2c3e50; /* Texto gris oscuro al hacer hover */
+  background-color: #a6c8e5;
+  color: #ffffff;
 }
+
 
 .sidebar hr.sidebar-divider {
   margin: 0 1rem 1rem;
@@ -37,16 +43,36 @@
   color: #2c3e50; /* Texto gris oscuro */
 }
 
-/* Estilo actualizado para el encabezado de sección */
+/*
 .sidebar .sidebar-heading {
   text-align: left;
   padding: 1rem 1rem;
   font-weight: bold;
-  font-size: 0.9rem; /* Tamaño de la fuente un poco más grande */
-  color: #ffffff; /* Blanco */
-  background-color: #74c69d; /* Fondo verde pastel claro */
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #74c69d;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   border-radius: 5px;
   margin-bottom: 0.5rem;
+} */
+
+
+
+.sidebar .sidebar-heading {
+  text-align: left;
+  padding: 1rem 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #ffffff;
+  /* background-color: #4a8ac1; */
+  background-color: #0d47a1;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.logout {
+  cursor: pointer;
 }

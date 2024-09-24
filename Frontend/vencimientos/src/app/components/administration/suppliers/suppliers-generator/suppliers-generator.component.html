@@ -10,16 +10,17 @@
       <div class="overlay" *ngIf="_isLoading"></div>
       <app-spinner *ngIf="_isLoading"></app-spinner>
 
-      <div class="clientSection">
+      <div class="supplierSection">
         <div class="col-md-12">
           <div class="col-md-12">
             <div class="row">
               <h3 class="display-list-home" >1 - Datos Proveedor</h3>
+              <hr class="hr-header">
             </div>
           </div>
 
           <div *ngIf="_showSupplierModal">
-            <button type="button" class="btn btn-success rounded-button" (click)="openSuppliersModal()">
+            <button type="button" class="btn btn-success rounded-button add-button" (click)="openSuppliersModal()">
               <i class="bi bi-plus bi-lg"></i> Crear Datos Proveedor
             </button>
           </div>
@@ -94,13 +95,13 @@
       </div>
 
 
-      <div class="vehicleSection" *ngIf="_supplierLoaded">
+      <div class="productsSection" *ngIf="_supplierLoaded">
 
         <div class="productsWantsSection" *ngIf="!_wantToCreateProducts">
           <div class="col-md-12">
             <div>
-              <button type="button" class="btn btn-success rounded-button" (click)="wantToCreateProducts()" [disabled]="_disableAllButtons">
-                <i class="bi bi-plus bi-lg"></i> ?Agregar Productos Al Proveedor ?
+              <button type="button" class="btn btn-success rounded-button add-button" (click)="wantToCreateProducts()" [disabled]="_disableAllButtons">
+                <i class="bi bi-plus bi-lg"></i> Agregar Productos al Proveedor
               </button>
             </div>
           </div>
@@ -110,13 +111,14 @@
           <div class="col-md-12" >
             <div class="row">
               <h3 class="display-list-home" >2 - Productos del proveedor</h3>
+              <hr class="hr-header">
             </div>
           </div>
 
           <div class="col-md-12">
             <div *ngIf="_supplierLoaded && _newSupplierProducts.length > 0 ">
-              <table class="table table-bordered table-striped table-hover .table-sm .table-responsive-md">
-                <thead class="thead-dark">
+              <table class="table-bordered">
+                <thead >
                   <tr>
                     <th>Nombre</th>
                     <th>Codigo de Barras</th>
@@ -157,7 +159,7 @@
 
           <div class="col-md-12">
             <div>
-              <button type="button" class="btn btn-success rounded-button" (click)="openProductsModal()" [disabled]="_disableAllButtons">
+              <button type="button" class="btn btn-success rounded-button add-button" (click)="openProductsModal()" [disabled]="_disableAllButtons">
                 <i class="bi bi-plus bi-lg"></i> Agregar Producto
               </button>
             </div>
@@ -196,12 +198,13 @@
         <div class="col-md-12" >
           <div class="row">
             <h3 class="display-list-home" >3 - Confirmar proveedor</h3>
+            <hr class="hr-header">
           </div>
         </div>
 
         <div class="col-md-12">
           <div>
-            <button type="button" class="btn btn-success rounded-button" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+            <button type="button" class="btn btn-success rounded-button add-button" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
               Crear Proveedor
             </button>
           </div>

@@ -50,7 +50,7 @@ export class UsersGridComponent implements OnInit {
     this.errorUpdate.subscribe(message => {
       this.messageError = message;
       this.showAlert(message);
-      this.cdr.detectChanges(); // Forzar la detección de cambios
+      this.cdr.detectChanges();
     });
 
     this.filteredUsers = this.users;
@@ -66,10 +66,15 @@ export class UsersGridComponent implements OnInit {
     this.submitModal.openModal();
   }
 
-  handleDeleteUserModalEvent(index: any) {
-    this.hideConfirmation();
-    this.hideAlert();
-    this.userDeleteEvent.emit(this.userToDelete);
+  handleDeleteUserModalEvent(mustDelete: boolean) {
+    if(mustDelete){
+      this.hideConfirmation();
+      this.hideAlert();
+      this.userDeleteEvent.emit(this.userToDelete);
+    } else {
+      this.submitModal.closeModal();
+    }
+
   }
 
   handleEditUser(editedUser: User) {
@@ -91,6 +96,8 @@ export class UsersGridComponent implements OnInit {
   }
 
   openUsersModal() {
+    this.hideConfirmation();
+    this.hideAlert();
     this.usersCreateModal.openModal();
   }
 

@@ -1,4 +1,4 @@
-<div class="modal" [ngClass]="{ 'open': isOpen }">
+<div class="modal" [ngClass]="{ 'open': isOpen }" (click)="onOverlayClick($event)">
   <div class="modal-overlay"></div>
   <div class="modal-container">
     <div class="modal-header">
@@ -268,7 +268,7 @@
 
       <div *ngIf="isLoggingOut" class="container mt-4">
         <div class="row">
-          <span>Seguro desea salir de la sesion ?
+          <span style="text-align: center;"> ¿ Seguro desea salir de la sesión ?
           </span>
 
           <br>

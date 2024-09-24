@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Subject, timeout } from 'rxjs';
 import { User } from '../../../../models/users/user';
 import { UserService } from '../../../../services/users/user.service';
 import { PageTitleComponent } from '../../../common/pagestitles/page-title/page-title.component';
 import { UsersCreateComponent } from '../users-create/users-create.component';
 import { UsersGridComponent } from '../users-grid/users-grid.component';
 import { UsersModalComponent } from '../users-modal/users-modal.component';
-
-
 
 @Component({
   selector: 'app-users',
@@ -26,7 +24,7 @@ export class UsersComponent implements OnInit {
   errorUpdate: Subject<string> = new Subject<string>();
 
   _isLoading: Boolean = true;
-  _pageTitle: string = "Administracion de usuarios";
+  _pageTitle: string = "Administración de usuarios";
 
   constructor(
     private userService: UserService,
@@ -40,14 +38,16 @@ export class UsersComponent implements OnInit {
 
   handleCreateUser(newUser: User) {
     if (newUser) {
+      this._isLoading = true;
       this.userService.createUser(newUser).subscribe(
         (response: User) => {
-          this._isLoading = true;
           this.userSuccessMessage = "Usuario Creado";
           this.getUsers()
       }, (err) => {
-        this._isLoading = true;
-        this.triggerErrorUpdate(err.error);
+        this._isLoading = false;
+
+        setTimeout( () => this.triggerErrorUpdate(err.error), 1000);
+
       });
     }
   }

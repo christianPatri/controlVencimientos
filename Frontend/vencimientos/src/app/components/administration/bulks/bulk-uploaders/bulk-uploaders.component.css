@@ -1,70 +1,26 @@
-.list-home{
-  text-align: center;
-  border-style: solid;
-  border-color: brown;
-  margin-top: 1cm;
+/* Estilos para encuadrar el contenido */
+.content-box {
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 20px; /* Padding interno */
+  border: 1px solid #d1d1d1; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera para destacar la caja */
+  margin-top: 20px; /* Separación del Page Title */
 }
 
-.display-list-home{
-  text-align: center;
-  padding-top: 1%;
-  float: none;
-}
-
-.submit-button {
-  margin-top: 10px;
-  margin-left: 70px;
-}
-
-.rounded-button {
-  border-radius: 20px; /* Ajusta el valor según tu preferencia */
-  margin-bottom: 10px;
-}
-
-.bi-lg {
-  font-size: 16px; /* Tamaño personalizado */
-  font-weight: bold;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  z-index: 1000; /* Z-index para colocar encima de todo */
-}
-
-/* Estilos para centrar el spinner */
-:host {
-  justify-content: center;
-  align-items: center;
-}
-
+/* Mantener el estilo del radio button */
 .radio-buttons {
   margin-top: 10px;
 }
 
-
-.radio-label-blue {
-  background-color: lightblue;
-  padding: 5px;
-  border-radius: 4px;
+/* Estilo del jumbotron para que destaque el Page Title */
+.jumbotron {
+  background-color: #f0f4f8; /* Color de fondo claro para el jumbotron */
+  padding-bottom: 0; /* Eliminar el padding inferior */
 }
 
-.radio-label-green {
-  background-color: lightgreen;
-  padding: 5px;
-  border-radius: 4px;
-}
-
-.radio-label-red {
-  background-color: lightcoral;
-  padding: 5px;
-  border-radius: 4px;
-}
-
-input[type="radio"] {
-  margin-right: 5px;
+/* Ajustes en la lista */
+.list-home {
+  margin-top: 1cm;
+  border: none; /* Eliminar bordes */
 }

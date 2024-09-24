@@ -15,7 +15,6 @@
                   <div class="form-group col form-custom-col">
                     <label for="name" class="input-label">Producto</label>
                     <input type="text" formControlName="name" class="form-control form-input-text" [(ngModel)]="productItem.product.name" readonly>
-                    <p>{{ productItem.expirationDate }}</p>
                   </div>
 
                   <div class="form-group col form-custom-col">
@@ -29,7 +28,7 @@
                   </div>
 
                   <div class="submit-button">
-                    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Guardar</button>
+                    <button type="submit" class="btn btn-primary save-btn rounded-button" [disabled]="myForm.invalid">Guardar</button>
                   </div>
                 </div>
 

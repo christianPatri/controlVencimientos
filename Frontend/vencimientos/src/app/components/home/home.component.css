@@ -1,21 +1,5 @@
-/* .list-home{
-  text-align: center;
-  border-style: solid;
-  border-color: brown;
-  margin-top: 1cm;
-}
-
-.display-list-home{
-  text-align: left;
-  padding-top: 6%;
-  float: none;
-}
-
- */
-
- .jumbotron {
-  /* background-color: #eaf7ec; */
-  background-color: #f0f4f8;
+.jumbotron {
+  background-color: #f5f5f5; /* Fondo gris claro para un contraste suave con el sidebar y el título */
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sutil sombra para resaltar la sección */
@@ -28,7 +12,7 @@
 .list-home {
   border-style: solid;
   border-width: 2px;
-  border-color: #74c69d; /* Verde pastel para armonizar con el sidebar */
+  border-color: #90caf9; /* Un azul más claro que armoniza con el fondo del jumbotron */
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 8px; /* Bordes redondeados para un diseño más moderno */
@@ -36,18 +20,17 @@
 }
 
 .list-home:hover {
-  /* background-color: #b0e4c5; */
-  background-color: #d1e7dd;
+  background-color: #e3f2fd; /* Un azul claro que destaca al hacer hover */
   cursor: pointer;
 }
 
 .display-list-home h3 {
-  color: #2c3e50; /* Gris oscuro para los títulos */
+  color: #0d47a1; /* Azul oscuro para los títulos, coincidiendo con el título de la página */
   font-weight: bold;
 }
 
 .display-list-home p {
-  color: #34495e; /* Gris un poco más claro para los párrafos */
+  color: #1976d2; /* Azul medio para los párrafos, proporciona contraste */
 }
 
 img {
@@ -56,16 +39,13 @@ img {
 }
 
 .jumbotron h3 {
-  color: #2c3e50; /* Gris oscuro para los encabezados */
+  color: #0d47a1; /* Azul oscuro para los encabezados */
 }
 
 .jumbotron p {
-  color: #34495e; /* Gris medio para los textos explicativos */
+  color: #1976d2; /* Azul medio para los textos explicativos */
 }
 
 .display-list-home {
   padding-top: 1rem;
 }
-
-
-

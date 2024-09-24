@@ -15,12 +15,9 @@ export class SiteSideBarComponent {
 
   @ViewChild('submitModal') submitModal!: GenericModalComponent;
 
-  _submitModalTitle: string = "Salir de sesion";
-
-
+  _submitModalTitle: string = "Salir de sesión";
 
   constructor(private sessionService: SessionService) {
-
   }
 
   ngOnInit(): void {

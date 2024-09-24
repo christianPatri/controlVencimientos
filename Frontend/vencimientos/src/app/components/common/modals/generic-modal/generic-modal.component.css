@@ -1,4 +1,3 @@
-
 .modal {
   position: fixed;
   top: 0;
@@ -6,8 +5,8 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-overlay {
@@ -16,68 +15,81 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-container {
   position: relative;
-  background-color: white;
-  width: 50%; /* Ancho del modal */
-  max-width: 550px; /* Ancho máximo del modal */
+  background-color: #ffffff;
+  width: 50%;
+  max-width: 550px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
-  background-color: #198754; /* Color de fondo del encabezado */
-  padding: 5px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  background-color: #003c8f;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .modal-title {
-  margin: 0; /* Eliminar margen predeterminado del título */
+  margin: 0;
+  font-size: 1rem;
 }
 
 .close-button {
-  position: absolute;
-  top: 4px;
-  right: 4px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.25rem;
+  color: #ffffff;
 }
 
-/* Estilo para cuando el modal está abierto */
+.submit-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-success {
+  background-color: #0d47a1;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #0066cc;
+}
+
+.rounded-button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content {
+  padding: 5px;
+}
+
 .modal.open {
   display: flex;
 }
 
-/* Estilo para cuando el modal está cerrado */
 .modal:not(.open) {
   display: none;
-}
-
-
-.modal-footer {
-
-  bottom: 5px; /* Ajusta la distancia desde la parte inferior */
-  left: 5px; /* Ajusta la distancia desde la izquierda */
-}
-
-.accept-button {
-  /* Estilos para los botones */
-  background-color: #f0f0f0; /* Color de fondo */
-  border: none;
-  padding: 8px 8px; /* Espaciado interno */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer;
-}
-
-.accept-button + .accept-button {
-  margin-left: 10px; /* Añade un margen entre botones */
 }

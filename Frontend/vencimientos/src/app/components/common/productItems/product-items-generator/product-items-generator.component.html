@@ -1,26 +1,23 @@
 <div class="jumbotron jumbotron-fluid animated fadeIn fast">
-
   <app-page-title
    [componentTitle]="_pageTitle">
   </app-page-title>
 
   <div class="container">
-    <div class="row list-home">
+    <div class="row">
 
       <div class="overlay" *ngIf="_isLoading"></div>
       <app-spinner *ngIf="_isLoading"></app-spinner>
 
-
-      <div class="clientSection">
+      <div>
         <div class="col-md-12">
-          <div class="col-md-12">
-            <div class="row">
-              <h3 class="display-list-home">Buscar Producto</h3>
-              <hr>
-            </div>
+
+          <div class="">
+            <h3 class="header-title">Buscar Producto</h3>
+            <hr class="hr-header">
           </div>
 
-          <div class="col-md-12">
+          <div class="">
             <div class="search-bar">
               <input type="text" placeholder="Buscar por codigo barras" [(ngModel)]="barCodeFilter">
               <input type="text" placeholder="Buscar por nombre" [(ngModel)]="productNameFilter">
@@ -44,7 +41,6 @@
       <div class="clientSection">
         <div class="col-md-12" >
 
-
           <app-product-items-modal #productItemsModal
                 (productItemCreatedModal)="handleCreateProductItem($event)"
                 [productSelected]="_productSelected">
@@ -60,8 +56,8 @@
           <div class="col-md-12" *ngIf="_newProductItems.length > 0">
             <div class="col-md-12">
               <div class="row">
-                <h3 class="display-list-home">Productos a Agregar</h3>
-                <hr>
+                <h3 class="header-title">Productos a Agregar</h3>
+                <hr class="hr-header">
               </div>
             </div>
             <div>
@@ -107,11 +103,11 @@
 
           <div class="col-md-12">
             <div *ngIf="_newProductItems.length !== 0">
-              <button type="button" class="btn btn-success rounded-button"  *ngIf="_newProductItems.length == 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+              <button type="button" class="btn btn-success rounded-button add-pi-button"  *ngIf="_newProductItems.length == 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
                 <i class="bi bi-plus bi-lg"></i> Ingresar Producto
               </button>
 
-              <button type="button" class="btn btn-success rounded-button"  *ngIf="_newProductItems.length > 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
+              <button type="button" class="btn btn-success rounded-button add-pi-button"  *ngIf="_newProductItems.length > 1" (click)="openSubmitModal()" [disabled]="_disableAllButtons">
                 <i class="bi bi-plus bi-lg"></i> Ingresar Productos
               </button>
             </div>
